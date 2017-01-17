@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form name="member">
+	<fieldset name="member" label="Update Member Details">
+ 
+        <field
+            name="id"
+            type="hidden"
+           
+            />
+       
+       <field
+            name="MemberFirstname"
+            type="text"
+	        description="First name"
+	        label="First name"
+	        class="inputbox"
+			default=""
+	        size="50" />
+	        
+	        <field
+            name="MemberSurname"
+            type="text"
+	        description="Surname"
+	        label="Surname"
+	        class="inputbox"
+			default=""
+	        size="50" />      
+ 
+	
+	<field
+            name="MemberHomeAddress"
+            type="text"
+	        description="Street Address"
+	        label="Street Address"
+	        class="inputbox"
+			default=""
+	        size="50" />
+	 <field
+            name="MemberHomeAddress2"
+            type="text"
+	        description="Street Address"
+	        label="Street Address (cont)"
+	        class="inputbox"
+			default=""
+	        size="50" />
+	 <field
+            name="MemberHomeSuburb"
+            type="text"
+	        description="Suburb"
+	        label="Suburb"
+	        class="inputbox"
+			default=""
+	        size="50" />
+	  <field
+            name="MemberHomeState"
+            type="text"
+	        description="State"
+	        label="State"
+	        class="inputbox"
+			default=""
+	        size="50" />
+	  <field
+            name="MemberHomePostcode"
+            type="text"
+	        description="Postcode"
+	        label="Postcode"
+	        class="inputbox"
+			default=""
+	        size="50" />
+	
+	
+	<field
+            name="MemberPhoneHome"
+            type="text"
+	        description="Home Phone"
+	        label="Home Phone"
+	        class="inputbox"
+			default=""
+	        size="50" />
+   <field
+            name="MemberPhoneMobile"
+            type="text"
+	        description="Mobile Phone"
+	        label="Mobile Phone"
+	        class="inputbox"
+			default=""
+	        size="50" />
+	        
+   <field
+            name="MemberPhoneWork"
+            type="text"
+	        description="Work Phone"
+	        label="Work Phone"
+	        class="inputbox"
+			default=""
+	        size="50" />
+	<field
+			name="MemberBirthDate"
+			type="calendar"
+			
+			label="Date of Birth"
+			description="Date of Birth"
+			
+			format="%Y-%m-%d %H:%M:%S"
+			size="22"
+			filter="user_utc"
+		/>
+	</fieldset>
+</form>

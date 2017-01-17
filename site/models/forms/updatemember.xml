@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form name="updatemember">
+	<fieldset name="updatemember">
+ 
+        <field
+            name="id"
+            type="hidden"
+           
+            />
+             
+ 
+	<field
+            name="MemberHomeAddress"
+            type="text"
+	        description="COM_MEMBERS_FORM_DESC_UPDATEMEMBERS_HOMEADDRESS"
+	        label="COM_MEMBERS_FORM_LBL_UPDATEMEMBERS_HOMEADDRESS"
+	        class="inputbox"
+			default=""
+	        size="50" />
+	
+	</fieldset>
+</form>
