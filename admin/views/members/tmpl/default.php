@@ -29,26 +29,36 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 	<table class="table table-striped table-hover">
 		<thead>
 		<tr>
-			<th width="5%">
-				<?php echo JHtml::_('grid.sort', 'COM_MEMBERS_ID', 'id', $listDirn, $listOrder); ?>
+			<th width="3%">
+				<?php echo JHtml::_('grid.sort', 'COM_MEMBERS_ID', 'MemberID', $listDirn, $listOrder); ?>
 			</th>
-			<th width="2%">
-				<?php echo JHtml::_('grid.checkall'); ?>
-			</th>
-			<th width="5%">
+			
+			<th width="3%">
 				<?php echo JText::_('COM_MEMBERS_TITLE') ;?>
 			
 			
-			<th width="15%">
+			<th width="8%">
 				<?php echo JHtml::_('grid.sort', 'COM_MEMBERS_FIRSTNAME', 'MemberFirstname', $listDirn, $listOrder); ?>
 			</th>
-                        <th width="20%">
+                        <th width="8%">
 				
 				<?php echo JHtml::_('grid.sort', 'COM_MEMBERS_SURSTNAME', 'MemberSurname', $listDirn, $listOrder); ?>
 			</th>
-                        <th width="15%">
+                        <th width="5%">
 				
 				<?php echo JHtml::_('grid.sort', 'COM_MEMBERS_MEMBERTYPE', 'MemberType', $listDirn, $listOrder); ?>
+			</th>
+			</th>
+				<th width="5%">
+				<?php echo JText::_('COM_MEMBERS_FAMILY') ;?>
+			</th>
+			</th>
+				<th width="5%">
+				<?php echo JText::_('COM_MEMBERS_LOCKERS') ;?>
+			</th>
+			</th>
+				<th width="5%">
+				<?php echo JText::_('COM_MEMBERS_FINANCE') ;?>
 			</th>
 			</th>
 				<th width="5%">
@@ -56,7 +66,15 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 			</th>
 			</th>
 				<th width="5%">
+				<?php echo JText::_('COM_MEMBERS_SUBSPAID') ;?>
+			</th>
+			</th>
+				<th width="5%">
 				<?php echo JText::_('COM_MEMBERS_SUBS') ;?>
+			</th>
+			</th>
+				<th width="5%">
+				<?php echo JText::_('COM_MEMBERS_PAYSUBS') ;?>
 			</th>
 			</th>
 				<th width="5%">
@@ -88,20 +106,24 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 		<tbody>
 			<?php if (!empty($this->items)) : ?>
 				<?php foreach ($this->items as $i => $row) :
-					$link = JRoute::_('index.php?option=com_members&task=member.edit&id=' . $row->id);
+					$link = JRoute::_('index.php?option=com_members&task=member.edit&MemberID=' . $row->MemberID);
 					$wplink = JRoute::_('index.php?option=com_members&view=memberworkparties&memid=' . $row->MemberID);
 					$subslink = JRoute::_('index.php?option=com_members&view=membersubsnotice&memid=' . $row->MemberID.'&tmpl=component');
+					$subspaymentlink = JRoute::_('index.php?option=com_members&view=membersubspayment&memid=' . $row->MemberID);
 					$subsreceiptlink = JRoute::_('index.php?option=com_members&view=membersubsreceipt&memid=' . $row->MemberID);
+					$lockerlink = JRoute::_('index.php?option=com_lockers&view=lockers&memid='. $row->MemberID);
+					$financeslink = JRoute::_('index.php?option=com_finances&view=finances&memid='. $row->MemberID);
+					$familieslink = JRoute::_('index.php?option=com_members&view=memberfamilies&memid='. $row->MemberID);
 					//$subslink = JRoute::_('index.php?option=com_members&view=membersubsnotice&memid=' . $row->MemberID.'&tmpl=component&print=1&page=');
 				?>
  
 					<tr>
 						<td align="center">
-							<?php echo $row->id; ?>
+							<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MEMBERS_EDIT_MEMBER'); ?>">
+								<?php echo $row->MemberID; ?>
+							</a>
 						</td>
-						<td>
-							<?php echo JHtml::_('grid.id', $i, $row->id); ?>
-						</td>
+						
 						<td>
 								
 								<?php echo $row->MemberTitle; ?>
@@ -111,19 +133,56 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 								<?php echo $row->MemberFirstname; ?>
 						</td>
                                                  <td>
-							<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_MEMBERS_EDIT_MEMBER'); ?>">
+							
 								<?php echo $row->MemberSurname; ?>
-							</a>
+							
 						</td>                                               
 						<td>
 								<?php echo $row->MemberType; ?>
 						</td>
 						<td>
+								
+								<?php if ($row->familycount> 0)
+								{?>
+									<a href="<?php echo $familieslink; ?>" >
+										Family members
+									</a>
+									<?php 
+								}
+								else {echo "-";}
+									
+								?>
+									
+						</td>
+						<td>
+								<?php if ($row->lockercount > 0)
+								{?>
+									<a href="<?php echo $lockerlink; ?>" >
+										Locker(s)
+									</a>
+									<?php 
+								}
+								else {echo "-";}
+									
+									?>
+						</td>
+						<td>
+								<a href="<?php echo $financeslink; ?>" >Finance</a>
+						</td>
+						<td>
 								<?php echo $row->MemberLeaveofAbsence; ?>
+						</td>
+						<td>
+								<?php echo $row->CurrentSubsPaid; ?>
 						</td>
 						<td>
 								<a href="<?php echo $subslink; ?>">
 									Subs Notice
+								</a>
+						</td>
+						<td>
+								<a href="<?php echo $subspaymentlink; ?>">
+									Pay Subs
 								</a>
 						</td>
 						<td>

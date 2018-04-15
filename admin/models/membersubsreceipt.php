@@ -109,7 +109,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Graduate' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2017' );
+					$query->where ( 'Year = 2018' );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
@@ -118,7 +118,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Student' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2017' );
+					$query->where ( 'Year = 2018' );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
@@ -212,7 +212,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2017' );
+						$query->where ( 'Year = 2018' );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -222,7 +222,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Child' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2017' );
+						$query->where ( 'Year = 2018' );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -232,7 +232,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2017' );
+						$query->where ( 'Year = 2018' );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -286,7 +286,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Locker' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2017' );
+					$query->where ( 'Year = 2018' );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$lockerrate = $db->loadResult ();
@@ -313,7 +313,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 			$query->select ( 'sum(Amount)' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate < \'2016-12-01\'');
+			$query->where ('TransactionDate < \'2017-12-01\'');
 			
 			$db->setQuery ( $query );
 			$db->execute ();
@@ -345,8 +345,10 @@ class MembersModelMemberSubsReceipt extends JModelList {
 			$query->select ( '*,date_format(TransactionDate,\'%d %M %Y\') as Transdate' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate > \'2016-11-30\'');
+			$query->where ('TransactionDate > \'2017-11-30\'');
 			$query->where('CreditDebit = \'C\'');
+			$query->where('Description LIKE \'%subs%\'');
+			
 			
 			$db->setQuery ( $query );
 			$db->execute ();

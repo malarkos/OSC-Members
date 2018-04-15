@@ -2,7 +2,7 @@
 <form>
 	<fieldset>
 		<field
-				name="id"
+				name="WorkPartyID"
 				type="hidden"
 				/>
 		
@@ -27,6 +27,13 @@
 				class="inputbox"
 				default=""
 				/>
+		<field 
+			name="WorkPartyRefID" 
+			type="workparties"
+			label="COM_MEMBER_WORKPARTY_LABEL" 
+			description="COM_MEMBER_WORKPARTY_DESC"
+			 
+			 />
 		<field
 				name="Comments"
 				type="text"

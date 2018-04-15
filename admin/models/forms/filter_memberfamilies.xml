@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="filter">
+		<field
+			name="search"
+			type="text"
+			label="COM_BANNERS_SEARCH_IN_TITLE"
+			hint="JSEARCH_FILTER"
+			class="js-stools-search-string"
+		/>
+		<field 
+			name="familymember" 
+			type="familymembers"
+			label="COM_MEMBER_FAMILYMEMBER_LABEL" 
+			description="COM_MEMBER_FAMILYMEMBER_DESC"
+			 onchange="this.form.submit();"
+			 >
+				 <option value="">COM_MEMBER_FAMILYMEMBER_LABEL</option>
+		</field>
+		<field 
+			name="familymembertype" 
+			type="familymembertype"
+			label="COM_MEMBER_FAMILYMEMBERTYPE_LABEL" 
+			description="COM_MEMBER_FAMILYMEMBERTYPE_DESC"
+			 onchange="this.form.submit();"
+			 >
+				 <option value="">COM_MEMBER_FAMILYMEMBERTYPE_LABEL</option>
+		</field>
+		<field 
+			name="member" 
+			type="members"
+			label="COM_MEMBER_MEMBER_LABEL" 
+			description="COM_MEMBER_MEMBER_DESC"
+			 onchange="this.form.submit();"
+			 >
+				 <option value="">COM_MEMBER_MEMBER_LABEL</option>
+		</field>
+	</fields>
+</form>

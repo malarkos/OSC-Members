@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset   addfieldpath="/administrator/components/com_members/models/fields">
+		<field
+				name="FamilyMemberID"
+				label="FamilyMemberID"
+				type="text"
+				 readonly="true"
+           		class="readonly"
+				/>
+				 
+	
+		
+		<field
+				name="FamilyMemberFirstname"
+				type="text"
+				label="COM_MEMBERS_FAMILYMEMBER_FIRSTNAME_LABEL"
+				description="COM_MEMBERS_FAMILYMEMBER_FIRSTNAME_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+		<field
+				name="FamilyMemberSurname"
+				type="text"
+				label="COM_MEMBERS_FAMILYMEMBER_SURNAME_LABEL"
+				description="COM_MEMBERS_FAMILYMEMBER_SURNAME_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+		<field
+				name="FamilyMembershipType"
+				type="list"
+				label="COM_MEMBERS_FAMILYMEMBER_TYPE_LABEL"
+				description="COM_MEMBERS_FAMILYMEMBER_TYPE_DESC"
+				class="inputbox"
+				
+				>
+			<option value="Buddy">Buddy</option>
+			<option value="Spouse">Spouse</option>
+			<option value="Child">Child</option>
+			<option value="Resigned">Resigned</option>
+			<option value="To Member">To Member</option>
+			<option value="Terminated">Terminated</option>
+			
+		</field>
+		<field 
+			name="MemberID" 
+			type="members"
+			label="COM_MEMBER_MEMBER_LABEL" 
+			description="COM_MEMBER_MEMBER_DESC"
+			 
+			 >
+				 
+		</field>
+		<field
+			name="FamilyMemberBirthDate"
+			type="calendar"
+			
+			label="COM_MEMBERS_FAMILYMEMBER_DOB_LABEL"
+			description="COM_MEMBERS_FAMILYMEMBER_DOB_DESC"
+			
+			format="%Y-%m-%d %H:%M:%S"
+			size="22"
+			filter="user_utc"
+		/>
+		<field
+			name="FamilyMemberJoinDate"
+			type="calendar"
+			
+			label="COM_MEMBERS_FAMILYMEMBER_JOINDATE_LABEL"
+			description="COM_MEMBERS_FAMILYMEMBER_JOINDATE_DESC"
+			
+			format="%Y-%m-%d %H:%M:%S"
+			size="22"
+			filter="user_utc"
+		/>
+		<field
+			name="FamilyMemberDepartureDate"
+			type="calendar"
+			
+			label="COM_MEMBERS_FAMILYMEMBER_DEPARTUREDATE_LABEL"
+			description="COM_MEMBERS_FAMILYMEMBER_DEPARTUREDATE_DESC"
+			
+			format="%Y-%m-%d %H:%M:%S"
+			size="22"
+			filter="user_utc"
+		/>
+		
+		<field name="CurrentSubsPaid"
+		       type="list"
+		       default="No"
+		       label="COM_MEMBERS_FAMILYMEMBER_SUBSPAID_LABEL"
+			description="COM_MEMBERS_FAMILYMEMBER_SUBSPAID_DESC">
+		       
+			<option value="No">No</option>
+			<option value="Yes">Yes</option>
+		 </field>
+		<field name="Comments" type="textarea" default="" label="Comments" description="" rows="10" cols="5" />
+			
+	</fieldset>
+	
+	
+</form>

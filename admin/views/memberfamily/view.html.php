@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MembersViewMemberWorkParty extends JViewLegacy
+class MembersViewMemberFamily extends JViewLegacy
 {
 	/**
 	 * View form
@@ -71,21 +71,21 @@ class MembersViewMemberWorkParty extends JViewLegacy
 		// Hide Joomla Administrator Main menu
 		$input->set('hidemainmenu', true);
  
-		$isNew = ($this->item->WorkPartyID == 0);
+		$isNew = ($this->item->FamilyMemberID == 0);
  
 		if ($isNew)
 		{
-			$title = JText::_('COM_MEMBERS_MANAGER_MEMBER_NEW');
+			$title = JText::_('COM_MEMBERS_MANAGER_FAMILYMEMBER_NEW');
 		}
 		else
 		{
-			$title = JText::_('COM_MEMBERS_MANAGER_MEMBER_EDIT');
+			$title = JText::_('COM_MEMBERS_MANAGER_FAMILYMEMBER_EDIT');
 		}
  
 		JToolBarHelper::title($title, 'member');
-		JToolBarHelper::save('memberworkparty.save');
+		JToolBarHelper::save('memberfamily.save');
 		JToolBarHelper::cancel(
-			'memberworkparty.cancel',
+			'memberfamily.cancel',
 			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
 		);
 	}
@@ -97,9 +97,9 @@ class MembersViewMemberWorkParty extends JViewLegacy
 	 */
 	protected function setDocument() 
 	{
-		$isNew = ($this->item->WorkPartyID< 1);
+		$isNew = ($this->item->MemberID < 1);
 		$document = JFactory::getDocument();
-		$document->setTitle($isNew ? JText::_('COM_MEMBERS_MEMBER_CREATING') :
-                JText::_('COM_MEMBERS_MEMBER_EDITING'));
+		$document->setTitle($isNew ? JText::_('COM_MEMBERS_FAMILYMEMBER_CREATING') :
+                JText::_('COM_MEMBERS_FAMILYMEMBER_EDITING'));
 	}
 }

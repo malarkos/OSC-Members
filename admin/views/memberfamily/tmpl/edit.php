@@ -14,11 +14,12 @@ JHtml::_('behavior.formvalidator');
 JHtml::_('formbehavior.chosen', 'select');
 $fieldsets = $this->form->getFieldsets();
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_members&layout=edit&WorkPartyID=' . (int) $this->item->WorkPartyID); ?>"
+<form action="<?php echo JRoute::_('index.php?option=com_members&layout=edit&FamilyMemberID=' . (int) $this->item->FamilyMemberID); ?>"
     method="post" name="adminForm" id="adminForm" class="form-validate form-horizontal" enctype="multipart/form-data">
+        <?php echo JLayoutHelper::render('joomla.edit.item_title', $this); ?>
         <div class="form-horizontal">
         <fieldset class="adminform">
-            <legend><?php echo JText::_('COM_MEMBERS_WORKPARTY_DETAILS'); ?></legend>
+            <legend><?php echo JText::_('COM_MEMBERS_FAMILYMEMBER_DETAILS'); ?></legend>
             <div class="row-fluid">
                 <div class="span6">
                     <?php foreach ($this->form->getFieldset() as $field): ?>
@@ -31,7 +32,7 @@ $fieldsets = $this->form->getFieldsets();
             </div>
         </fieldset>
     </div>
-    <input type="hidden" name="task" value="memberworkparty.edit" />
+   
+    <input type="hidden" name="task" value="memberfamily.edit" />
     <?php echo JHtml::_('form.token'); ?>
-    
 </form>

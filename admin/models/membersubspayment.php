@@ -14,7 +14,7 @@ defined ( '_JEXEC' ) or die ( 'Restricted access' );
  *
  * @since 0.0.1
  */
-class MembersModelMemberSubsNotice extends JModelList {
+class MembersModelMemberSubsPayment extends JModelList {
 	
 	/**
 	 * Method to build an SQL query to load the list data.
@@ -44,6 +44,28 @@ class MembersModelMemberSubsNotice extends JModelList {
 		return $query;
 	}
 	
+	// function to return all details about a member
+	public function getMemberDetails() {
+		$db = JFactory::getDbo ();
+		$query = $db->getQuery ( true );
+		
+		// get values
+		$jinput = JFactory::getApplication ()->input;
+		$memid = $jinput->get ( 'memid', 0 );
+		$memberdetails = array ();
+		
+		if ($memid != 0) { // check we have a valid value
+			// Create the base select statement.
+			$query->select ( '*' );
+			$query->from ( 'members' );
+			$query->where ( 'MemberID = ' . $memid );
+			$db->setQuery ( $query );
+			$db->execute ();
+			
+			$memberdetails = $db->loadObjectList ();
+		}
+		return $memberdetails;
+	}
 	// other calls
 	public function getMemberSub() {
 		// Initialize variables.
@@ -84,40 +106,19 @@ class MembersModelMemberSubsNotice extends JModelList {
 					// $app->enqueueMessage('In Life and Hon Life');
 					$membersub = 0;
 				} elseif ($membertype == "Graduate") {
-					
-					// check for Summer usage
-					$query = $db->getQuery ( true );
-					$query->select ( 'SummerUsageOnly' );
-					$query->from ( 'members' );
-					$query->where ( 'MemberID = ' . $memid );
-					$db->setQuery ( $query );
-					$db->execute ();
-					$summerusage = $db->loadResult ();
-					
-					if ($summerusage == "No") 
-					{
 					$query = $db->getQuery ( true );
 					$query->select ( 'Graduate' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2018' );
+					$query->where ( 'Year = 2017' );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
-					} else if ($summerusage == "Yes") {
-						$query = $db->getQuery ( true );
-						$query->select ( 'Summer' );
-						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
-						$db->setQuery ( $query );
-						$db->execute ();
-						$membersub = $db->loadResult ();
-					}
 					// $app->enqueueMessage('In graduate, membersub = ' . $membersub. ":");
 				} elseif ($membertype == "Student") {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Student' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2018' );
+					$query->where ( 'Year = 2017' );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
@@ -136,6 +137,32 @@ class MembersModelMemberSubsNotice extends JModelList {
 		// $app->enqueueMessage('membersub = '. $membersub . ':');
 		return $membersub;
 	}
+	
+	public function getMemberSubPaid() {
+		// Initialize variables.
+		$db = JFactory::getDbo ();
+		$query = $db->getQuery ( true );
+	
+		// get input values
+		$app = JFactory::getApplication ();
+		$jinput = JFactory::getApplication ()->input;
+		$memid = $jinput->get ( 'memid', 0 );
+	
+		$membersubspaid="No"; // default value
+		
+		if ($memid != 0) {
+			$query = $db->getQuery ( true );
+			$query->select ( 'CurrentSubsPaid' );
+			$query->from ( 'members' );
+			$query->where ( 'MemberID = ' . $memid );
+				
+			$db->setQuery ( $query );
+			$db->execute ();
+			$membersubspaid = $db->loadResult ();
+		}
+		return $membersubspaid;
+	}
+	
 	public function getFamilySubs() {
 		$app = JFactory::getApplication ();
 		
@@ -185,7 +212,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = 2017' );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -195,7 +222,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Child' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = 2017' );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -205,7 +232,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = 2017' );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -259,7 +286,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Locker' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2018' );
+					$query->where ( 'Year = 2017' );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$lockerrate = $db->loadResult ();
@@ -286,7 +313,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 			$query->select ( 'sum(Amount)' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate < \'2017-12-01\'');
+			$query->where ('TransactionDate < \'2016-12-01\'');
 			
 			$db->setQuery ( $query );
 			$db->execute ();
@@ -311,21 +338,25 @@ class MembersModelMemberSubsNotice extends JModelList {
 		$app = JFactory::getApplication ();
 		$jinput = JFactory::getApplication ()->input;
 		$memid = $jinput->get ( 'memid', 0 );
+		//JFactory::getApplication()->enqueueMessage('Member id: '.$memid.':');
 		if ($memid != 0) {
+			
 			$query = $db->getQuery ( true );
 			$query->select ( '*,date_format(TransactionDate,\'%d %M %Y\') as Transdate' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate > \'2017-11-30\'');
+			$query->where ('TransactionDate > \'2016-11-30\'');
 			$query->where('CreditDebit = \'C\'');
 			
 			$db->setQuery ( $query );
 			$db->execute ();
 			$num_rows = $db->getNumRows ();
+			//JFactory::getApplication()->enqueueMessage('Num rows = '.$num_rows);
 			$subspayment = $db->loadObjectList ();
 			
 			
 		} //if 
+		
 		return $subspayment;
 		
 	} // function

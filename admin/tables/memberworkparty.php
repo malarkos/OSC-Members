@@ -23,6 +23,6 @@ class MembersTableMemberWorkParty extends JTable
 	 */
 	function __construct(&$db)
 	{
-		parent::__construct('workparty', 'id', $db);
+		parent::__construct('workparty', 'WorkPartyID', $db);
 	}
 }

@@ -66,10 +66,10 @@ class MembersViewMembers extends JViewLegacy
 	protected function addToolBar()
 	{
 		
-		if ($this->pagination->total)
+		/*if ($this->pagination->total)
 		{
 			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
-		}
+		}*/
 		
 		JToolBarHelper::title(JText::_('COM_MEMBERS_MANAGER'));
 		JToolBarHelper::addNew('member.add');

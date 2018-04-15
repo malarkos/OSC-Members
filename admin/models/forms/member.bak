@@ -9,7 +9,11 @@
            		class="readonly"
 				/>
 				 
-	
+		<field name="joomlauserid" 
+                type="joomlauser"
+                label="COM_MEMBERS_MANAGER_JOOMLA_USER"
+                desc="COM_MEMBERS_MANAGER_JOOMLA_USER"
+                />
 		<field
 				name="MemberTitle"
 				type="text"
@@ -43,7 +47,7 @@
 				label="COM_MEMBERS_MEMBER_TYPE_LABEL"
 				description="COM_MEMBERS_MEMBER_TYPE_DESC"
 				class="inputbox"
-				default="Applicant"
+				default="Prelim app"
 				>
 			<option value="Life">Life</option>
 			<option value="Hon Life">Hon Life</option>
@@ -58,26 +62,6 @@
 			<option value="Deceased">Deceased</option>
 			<option value="Rejected">Rejected</option>
 		</field>
-		<field
-				name="MemberEmail"
-				type="text"
-				label="COM_MEMBERS_MEMBER_EMAIL_LABEL"
-				description="COM_MEMBERS_MEMBER_EMAIL_DESC"
-				size="40"
-				class="inputbox"
-				default=""
-				validate="email"
-				/>
-		<field
-				name="MemberPhoneMobile"
-				type="text"
-				label="COM_MEMBERS_MEMBER_PHONEMOBILE_LABEL"
-				description="COM_MEMBERS_MEMBER_PHONEMOBILE_DESC"
-				size="40"
-				class="inputbox"
-				default=""
-				
-				/>
 		<field
 			name="MemberBirthDate"
 			type="calendar"
@@ -139,7 +123,16 @@
 		
 		
 		
-		
+		<field
+				name="MemberEmail"
+				type="text"
+				label="COM_MEMBERS_MEMBER_EMAIL_LABEL"
+				description="COM_MEMBERS_MEMBER_EMAIL_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				validate="email"
+				/>
 		<field
 				name="MemberEmail2"
 				type="text"
@@ -150,7 +143,16 @@
 				default=""
 				validate="email"
 				/>
-		
+		<field
+				name="MemberPhoneMobile"
+				type="text"
+				label="COM_MEMBERS_MEMBER_PHONEMOBILE_LABEL"
+				description="COM_MEMBERS_MEMBER_PHONEMOBILE_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				
+				/>
 		<field
 				name="MemberPhoneWork"
 				type="text"
@@ -193,16 +195,7 @@
 			<option value="Yes">Yes</option>
 		 </field>
 	
-		<field name="CurrentSubsPaid"
-		       type="list"
-		       default="No"
-		       label="COM_MEMBERS_MEMBER_SUBSPAID_LABEL"
-				description="COM_MEMBERS_MEMBER_SUBSPAID_DESC">
-		       
-			<option value="No">No</option>
-			<option value="Yes">Yes</option>
-		 </field>	
-		 
+			
 	</fieldset>
 	<fieldset name="member_dates">
 		<field

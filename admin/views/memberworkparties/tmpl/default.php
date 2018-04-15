@@ -19,7 +19,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		<thead>
 		<tr>
 			<th width="5%">
-				<?php echo JHtml::_('grid.sort', 'COM_MEMBERS_ID', 'id'); ?>
+				<?php echo JHtml::_('grid.sort', 'COM_MEMBERS_WORKPARTYID', 'WorkPartyID'); ?>
 			</th>
 			<th width="2%">
 				<?php echo JHtml::_('grid.checkall'); ?>
@@ -47,15 +47,15 @@ JHtml::_('formbehavior.chosen', 'select');
 		<tbody>
 			<?php if (!empty($this->items)) : ?>
 				<?php foreach ($this->items as $i => $row) :
-					$link = JRoute::_('index.php?option=com_members&task=member.edit&id=' . $row->id);
+					$link = JRoute::_('index.php?option=com_members&task=member.edit&WorkPartyID=' . $row->WorkPartyID);
 				?>
  
 					<tr>
 						<td align="center">
-							<?php echo $row->id; ?>
+							<?php echo $row->WorkPartyID; ?>
 						</td>
 						<td>
-							<?php echo JHtml::_('grid.id', $i, $row->id); ?>
+							<?php echo JHtml::_('grid.id', $i, $row->WorkPartyID); ?>
 						</td>
 						<td>
 								
@@ -66,7 +66,7 @@ JHtml::_('formbehavior.chosen', 'select');
 								<?php echo $row->WorkPartyDays; ?>
 						</td>
                                                 
-						</td>                                               
+						                                              
 						<td>
 								<?php echo $row->Comments; ?>
 						</td>

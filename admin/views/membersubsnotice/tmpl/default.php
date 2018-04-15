@@ -20,7 +20,7 @@ $totalowing = 0.00;
 	<tr>
 		<td align="center">
 			<h2>
-				Ormond Ski Club 2017 Subscription Notice<img
+				Ormond Ski Club 2018 Subscription Notice<img
 					src="http://www.ormondskiclub.com.au/images/osclogo58.png"
 					alt="Ormond Ski Club Logo" height="58" width="111">
 			</h2>
@@ -43,7 +43,7 @@ $totalowing = 0.00;
 				<td width="50%" align="right"><i><b>Ormond Ski Club</b></br> 1/175 Fitzroy St</br> FITZROY, Vic, 3065</br> email:
 						general@ormondskiclub.com.au</br> web: www.ormondskiclub.com.au</br>
 						ABN: 75004765753
-						<p>Date issued: 1st January 2017</i></td>
+						<p>Date issued: 21st January 2018</i></td>
 			</tr>
 		</table>
 	</tr>
@@ -52,19 +52,19 @@ $totalowing = 0.00;
 			Dear <?php echo $this->items[0]->MemberFirstname;?>,<p>
 			
 			<p>
-				This is your 2017 Subscription Notice for Ormond Ski Club with
-				subscriptions due by <B>28th Feb 2017</B>. Please check the
+				This is your 2018 Subscription Notice for Ormond Ski Club with
+				subscriptions due by <B>28th Feb 2018</B>. Please check the
 				subscriptions below are correct and advise any errors or required
 				changes. Early payment of subscriptions helps the Club pay for Work
 				Parties and other maintenance costs and Subs need to be paid prior
-				to being able to book for the 2017 Ski season.  If you have any questions about your Subscription notice, please contact the Membership officer at general@ormondskiclub.com.au.
+				to being able to book for the 2018 Ski season.  If you have any questions about your Subscription notice, please contact the Membership officer at general@ormondskiclub.com.au.
 		
 		</td>
 	</tr>
 	<tr>
 		<table width="100%" border="2">
 			<td width="70%">
-				<h3>2017 Membership Subscriptions</h3>
+				<h3>2018 Membership Subscriptions</h3>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -75,7 +75,7 @@ $totalowing = 0.00;
 					</thead>
 					<tbody>
 						<tr>
-							<td>Balance as of 30 Nov 2016</td>
+							<td>Balance as of 30 Nov 2017</td>
 							<td align="right">$<?php echo $this->currentbalance; ?>
 						<?php $totalowing += $this->currentbalance;?></td>
 							<td>$<?php $totalowed = sprintf("%04.2f",$totalowing); echo $totalowed;  ?></td>
@@ -126,7 +126,7 @@ $totalowing = 0.00;
 							<?php endforeach; ?>
 						<?php endif; ?>			
 						<tr>
-							<td>Balance due by <b>28th Feb 2017</b><?php if ($totalowing >= 0) echo "- No payment required.";?></td>
+							<td>Balance due by <b>28th Feb 2018</b><?php if ($totalowing >= 0) echo "- No payment required.";?></td>
 							<td>&nbsp;</td>
 							<td align="right"><b>$<?php if ($totalowing < 0) $totalowing *= -1;  $totalowing = sprintf("%04.2f",$totalowing); echo $totalowing;?></b>
 							</td>
@@ -136,14 +136,14 @@ $totalowing = 0.00;
 			</td>
 			<td width="30%" align="right" valign="top" border="1">
 				<h3>How to pay:</h3> <b><i>Internet transfer</i></b></br> <b>BSB:</b>
-				013658 <b></br> Account No:</b> 285414142</br> <i>Please put your
+				013279 <b></br> Account No:</b> 285414142</br> <i>Please put your
 					name </br> in the description field!
 			</i>
 				<p>
 				
 				<p>
 					<b><i>By Cheque</i></b></br>Payable to: <i>Ormond Ski Club</i></br>Send to: Membership Officer</br>
-					7 Heatherlea Drive, </br>Wheelers Hill </br>Vic, 3150
+					Unit 5</br>233 Bluff Rd</br>Sandringham </br>Vic, 3191
 			
 			</td>
 		</table>

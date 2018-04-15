@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MembersModelMember extends JModelAdmin
+class MembersModelMemberFamily extends JModelAdmin
 {
 	/**
 	 * Method to get a table object, load it if necessary.
@@ -28,7 +28,7 @@ class MembersModelMember extends JModelAdmin
 	 *
 	 * @since   1.6
 	 */
-	public function getTable($type = 'Member', $prefix = 'MembersTable', $config = array())
+	public function getTable($type = 'MemberFamily', $prefix = 'MembersTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -47,8 +47,8 @@ class MembersModelMember extends JModelAdmin
 	{
 		// Get the form.
 		$form = $this->loadForm(
-			'com_members.member',
-			'member',
+			'com_members.memberfamily',
+			'memberfamily',
 			array(
 				'control' => 'jform',
 				'load_data' => $loadData
@@ -74,7 +74,7 @@ class MembersModelMember extends JModelAdmin
 	{
 		// Check the session for previously entered form data.
 		$data = JFactory::getApplication()->getUserState(
-			'com_members.edit.member.data',
+			'com_members.edit.memberfamily.data',
 			array()
 		);
  

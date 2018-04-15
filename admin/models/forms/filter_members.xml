@@ -8,5 +8,32 @@
 			hint="JSEARCH_FILTER"
 			class="js-stools-search-string"
 		/>
+		<field 
+			name="member" 
+			type="members"
+			label="COM_MEMBER_MEMBER_LABEL" 
+			description="COM_MEMBER_MEMBER_DESC"
+			 onchange="this.form.submit();"
+			 >
+				 <option value="">COM_MEMBER_MEMBER_LABEL</option>
+		</field>
+		<field 
+			name="membertype" 
+			type="membertype"
+			label="COM_MEMBER_MEMBERTYPE_LABEL" 
+			description="COM_MEMBER_MEMBERTYPE_DESC"
+			 onchange="this.form.submit();"
+			 >
+				 <option value="">COM_MEMBER_MEMBERTYPE_LABEL</option>
+		</field>
+		<field 
+			name="memberloa" 
+			type="memberloa"
+			label="COM_MEMBER_MEMBERLOA_LABEL" 
+			description="COM_MEMBER_MEMBERLOA_DESC"
+			 onchange="this.form.submit();"
+			 >
+				 <option value="">COM_MEMBER_MEMBERLOA_LABEL</option>
+		</field>
 	</fields>
 </form>

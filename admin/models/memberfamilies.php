@@ -14,7 +14,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MembersModelMembers extends JModelList
+class MembersModelMemberFamilies extends JModelList
 {
     /**
 	 * Constructor.
@@ -29,10 +29,11 @@ class MembersModelMembers extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'MemberID','m.MemberID',
-				'MemberFirstname','m.MemberFirstname',
-				'MemberSurname','m.MemberSurname',
-				'MemberLeaveofAbsence','m.MemberLeaveofAbsence'	
+					'FamilyMemberID','f.FamilyMemberID',
+					'MemberID','f.MemberID',
+					'FamilyMemberFirstname','f.FamilyMemberFirstname',
+					'FamilyMemberSurname','f.FamilyMemberSurname',
+					'FamilyMembershipType','f.FamilyMembershipType'
                                 );
 		}
  
@@ -50,18 +51,15 @@ class MembersModelMembers extends JModelList
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		
-	
+		$jinput = JFactory::getApplication ()->input;
+		$memid = $jinput->get ( 'memid', 0 );
+		
+ 
 		// Create the base select statement.
-		$query->select('m.*, count(LockerNumber) as lockercount,count(FamilyMemberID) as familycount');
-        $query->from('members as m');
-        $query->leftJoin('lockers as l on m.MemberID = l.MemberID');
-        $query->leftJoin('familymembers as f on m.MemberID = f.MemberID');
-        $query->group('m.MemberID');
-        /*$query->where ('MemberType = \'Graduate\' ');
-        $query->leftJoin('workparty AS w ON m.MemberID = w.MemberId');
-        $query->order('MemberJoiningDate ASC');
-        $query->group('m.MemberID');*/
-                
+		$query->select('f.*,concat(m.memberfirstname," ",m.membersurname) as membername'); //,sum(w.WorkPartyDays) as wpdays');
+        $query->from('familymembers as f');
+        $query->leftJoin('members as m on f.MemberID = m.MemberID');
+        //$query->leftJoin('familyworkparty as w on f.FamilyMemberID = w.FamilyMemberID');
         // Filter: like / search
 		$search = $this->getState('filter.search');
 		//JFactory::getApplication()->enqueueMessage('In model');
@@ -69,34 +67,36 @@ class MembersModelMembers extends JModelList
 		{
 			//JFactory::getApplication()->enqueueMessage('In search');
 			$like = $db->quote('%' . $search . '%');
-			$query->where('MemberSurname LIKE ' . $like.' OR MemberFirstname LIKE '.$like);
+			$query->where('FamilyMemberSurname LIKE ' . $like.' OR FamilyMemberFirstname LIKE '.$like);
 		}
  
 		
-		// Filter by member
+		// Filter by family member
+		$familymember = $this->getState('filter.familymember');
+		if (is_numeric($familymember))
+		{
+			$query->where('f.FamilyMemberID = '.(int) $familymember);
+		}
+		
+		// Filter by  member
 		$member = $this->getState('filter.member');
 		if (is_numeric($member))
 		{
-			$query->where('m.MemberID = '.(int) $member);
+			$query->where('f.MemberID = '.(int) $member);
 		}
-		
-		$membertype = $this->getState('filter.membertype');
+		// filter by family membership type
+		$membertype = $this->getState('filter.familymembertype');
 		if (!empty($membertype)) {
-			$query->where('m.MemberType = \''.$db->escape($membertype).'\'');
-		}
-		// Filter by memberLoA
-		$memberloa = $this->getState('filter.memberloa');
-		if (!empty($memberloa)) {
-			$query->where('m.MemberLeaveofAbsence = \''.$db->escape($memberloa).'\'');
+			$query->where('f.FamilyMembershipType = \''.$db->escape($membertype).'\'');
 		}
 		
- 		/*$orderCol	= $this->state->get('list.ordering', 'm.MemberID');
-		$orderDirn 	= $this->state->get('list.direction', 'asc');
- 
-		$query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));*/
-		
-		
-		
+		// filter by specific member
+		if($memid <> 0)
+		 {
+		 	$query->where('f.MemberID = '.$memid);
+		 	$this->setState('filter.member', $memid);
+		 }
+ 		
 		return $query;
 	}
 	
@@ -115,15 +115,17 @@ class MembersModelMembers extends JModelList
 		$value = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
 		$this->setState('filter.search', $value);
 		
+		$familymember = $app->getUserStateFromRequest($this->context . 'filter.familymember', 'filter_familymember', '', 'string');
+		$this->setState('filter.familymember', $familymember);
+		
 		$member = $app->getUserStateFromRequest($this->context . 'filter.member', 'filter_member', '', 'string');
 		$this->setState('filter.member', $member);
-		$membertype = $app->getUserStateFromRequest($this->context . 'filter.membertype', 'filter_membertype', '', 'string');
-		$this->setState('filter.membertype', $membertype);
 		
-		$memberloa = $app->getUserStateFromRequest($this->context . 'filter.memberloa', 'filter_memberloa', '', 'string');
-		$this->setState('filter.memberloa', $memberloa);
+		$membertype = $app->getUserStateFromRequest($this->context . 'filter.familymembertype', 'filter_familymembertype', '', 'string');
+		$this->setState('filter.familymembertype', $membertype);
 		
-		parent::populateState('m.MemberID', 'asc');
+		
+		parent::populateState('m.FamilyMemberID', 'asc');
 	
 	}
 }

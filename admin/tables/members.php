@@ -23,6 +23,7 @@ class MembersTableMembers extends JTable
 	 */
 	function __construct(&$db)
 	{
-		parent::__construct('oscmembers', 'id', $db);
+		//parent::__construct('oscmembers', 'id', $db);
+		parent::__construct('members', 'MemberID', $db);
 	}
 }

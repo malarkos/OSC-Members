@@ -14,7 +14,7 @@ JHtml::_('behavior.formvalidator');
 JHtml::_('formbehavior.chosen', 'select');
 $fieldsets = $this->form->getFieldsets();
 ?>
-<form action="<?php echo JRoute::_('index.php?option=com_members&layout=edit&id=' . (int) $this->item->id); ?>"
+<form action="<?php echo JRoute::_('index.php?option=com_members&layout=edit&MemberID=' . (int) $this->item->MemberID); ?>"
     method="post" name="adminForm" id="adminForm" class="form-validate form-horizontal" enctype="multipart/form-data">
         <?php echo JLayoutHelper::render('joomla.edit.item_title', $this); ?>
         <fieldset>

@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
  */
-class MembersViewMemberWorkParties extends JViewLegacy
+class MembersViewMemberFamilies extends JViewLegacy
 {
 	/**
 	 * Display the Hello World view
@@ -28,12 +28,15 @@ class MembersViewMemberWorkParties extends JViewLegacy
 	{
 		// Get application
 		$app = JFactory::getApplication();
-		//$context = "members.list.admin.members";
+		$context = "members.list.admin.members";
 		// Get data from the model
 		$this->items		= $this->get('Items');
 		$this->pagination	= $this->get('Pagination');
-		$this->state		= $this->get('State');
-		
+		$this->state			= $this->get('State');
+		//$this->filter_order 	= $app->getUserStateFromRequest($context.'filter_order', 'filter_order', 'id', 'cmd');
+		//$this->filter_order_Dir = $app->getUserStateFromRequest($context.'filter_order_Dir', 'filter_order_Dir', 'asc', 'cmd');
+		$this->filterForm    	= $this->get('FilterForm');
+		$this->activeFilters 	= $this->get('ActiveFilters');
  
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -49,7 +52,8 @@ class MembersViewMemberWorkParties extends JViewLegacy
 		// Display the template
 		parent::display($tpl);
 		
-
+		// Set the document
+		$this->setDocument();
 	}
 	
 		/**
@@ -62,11 +66,25 @@ class MembersViewMemberWorkParties extends JViewLegacy
 	protected function addToolBar()
 	{
 		
+		/*if ($this->pagination->total)
+		{
+			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
+		}*/
 		
-		JToolBarHelper::title(JText::_('COM_MEMBERS_MANAGER_WORKPARTY'));
-		JToolBarHelper::addNew('memberworkparty.add');
-		JToolBarHelper::editList('memberworkparty.edit');
-		
+		JToolBarHelper::title(JText::_('COM_MEMBERS_FAMILYMEMBER_MANAGER'));
+		JToolBarHelper::addNew('memberfamily.add');
+		JToolBarHelper::editList('memberfamily.edit');
+		// Add delete
 	}
 	
+		/**
+	 * Method to set up the document properties
+	 *
+	 * @return void
+	 */
+	protected function setDocument() 
+	{
+		$document = JFactory::getDocument();
+		$document->setTitle(JText::_('COM_MEMBERS_FAMILYMEMBER_ADMINISTRATION'));
+	}
 }

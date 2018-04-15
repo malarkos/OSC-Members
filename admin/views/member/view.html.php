@@ -71,7 +71,7 @@ class MembersViewMember extends JViewLegacy
 		// Hide Joomla Administrator Main menu
 		$input->set('hidemainmenu', true);
  
-		$isNew = ($this->item->id == 0);
+		$isNew = ($this->item->MemberID == 0);
  
 		if ($isNew)
 		{
@@ -97,7 +97,7 @@ class MembersViewMember extends JViewLegacy
 	 */
 	protected function setDocument() 
 	{
-		$isNew = ($this->item->id < 1);
+		$isNew = ($this->item->MemberID < 1);
 		$document = JFactory::getDocument();
 		$document->setTitle($isNew ? JText::_('COM_MEMBERS_MEMBER_CREATING') :
                 JText::_('COM_MEMBERS_MEMBER_EDITING'));
