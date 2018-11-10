@@ -14,6 +14,7 @@ defined('_JEXEC') or die('Restricted access');
  * Members View
  *
  * @since  0.0.1
+ *  10 Nov - add Getting of subs year
  */
 class MembersViewMemberSubsNotice extends JViewLegacy
 {
@@ -32,6 +33,7 @@ class MembersViewMemberSubsNotice extends JViewLegacy
 		// Get data from the model
 		$this->items		= $this->get('Items');
 		$this->membersubs 	=$this->get('MemberSub');
+		$this->subsdates     = $this->get('SubsDates');  
 		$this->familysubs 	= $this->get('FamilySubs');
 		$this->lockersubs 	= $this->get('LockerSubs');
 		$this->subspayments = $this->get('SubsPayments');

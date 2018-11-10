@@ -329,4 +329,9 @@ class MembersModelMemberSubsNotice extends JModelList {
 		return $subspayment;
 		
 	} // function
+	
+	public function getSubsDates()
+	{
+	    // Function to return year and date by which subs are to be paid
+	}
 }
