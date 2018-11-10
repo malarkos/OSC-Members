@@ -68,6 +68,9 @@ class MembersModelMemberSubsNotice extends JModelList {
 		$jinput = JFactory::getApplication ()->input;
 		$memid = $jinput->get ( 'memid', 0 );
 		
+		// get subs year
+		$subsyear = $this->returnSubsYear();
+		
 		if ($memid != 0) {
 			// $app->enqueueMessage('MemberID = '.$memid.';');
 			
@@ -112,7 +115,8 @@ class MembersModelMemberSubsNotice extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Graduate' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2018' );
+					//$query->where ( 'Year = 2018' );
+					$query->where ( 'Year = ' . $subsyear );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
@@ -120,7 +124,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Summer' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = ' . $subsyear );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$membersub = $db->loadResult ();
@@ -130,7 +134,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Student' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2018' );
+					$query->where ( 'Year = ' . $subsyear );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
@@ -159,6 +163,9 @@ class MembersModelMemberSubsNotice extends JModelList {
 		
 		// Initialize variables.
 		$db = JFactory::getDbo ();
+		
+		// get subs year
+		$subsyear = $this->returnSubsYear();
 		
 		if ($memid != 0) {
 			
@@ -198,7 +205,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = ' . $subsyear );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -208,7 +215,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Child' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = ' . $subsyear );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -218,7 +225,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = ' . $subsyear );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -243,6 +250,9 @@ class MembersModelMemberSubsNotice extends JModelList {
 		// Initialize variables.
 		$db = JFactory::getDbo ();
 		$query = $db->getQuery ( true );
+		
+		// get subs year
+		$subsyear = $this->returnSubsYear();
 		
 		if ($memid != 0) {
 			// get if member is on Loa
@@ -272,7 +282,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Locker' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2018' );
+					$query->where ( 'Year = ' . $subsyear );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$lockerrate = $db->loadResult ();

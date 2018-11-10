@@ -177,7 +177,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 								<?php echo $row->CurrentSubsPaid; ?>
 						</td>
 						<td>
-								<a href="<?php echo $subslink; ?>">
+								<a href="<?php echo $subslink; ?>" target="_blank">
 									Subs Notice
 								</a>
 						</td>
