@@ -16,6 +16,19 @@ defined ( '_JEXEC' ) or die ( 'Restricted access' );
  */
 class MembersModelMemberSubsNotice extends JModelList {
 	
+    public function returnSubsYear()
+    {
+        $db = JFactory::getDbo ();
+        $query = $db->getQuery ( true );
+        $query->select ( 'subsyear' );
+        $query->from ( 'oscreference' );
+        $query->where ( 'id = 1 '  );  // Data only in the first row
+        $db->setQuery ( $query );
+        $subsyear = $db->loadResult();
+        
+        return ($subsyear);
+    }
+    
 	/**
 	 * Method to build an SQL query to load the list data.
 	 *
@@ -332,6 +345,23 @@ class MembersModelMemberSubsNotice extends JModelList {
 	
 	public function getSubsDates()
 	{
+	    
+	    JLoader::import('MembersHelper',__DIR__ . '/helpers/membershelper.php');
+	    
 	    // Function to return year and date by which subs are to be paid
+	    $app = JFactory::getApplication ();
+	    $subsyear = $this->returnSubsYear();
+	    $app->enqueueMessage('Subs year = '. $subsyear . ':');
+	    $subsdates = array();
+	    $subdates->subsyear = $subsyear;
+	    
+	    return $subsyear;
+	}
+	
+	public function getSubsDueDate()
+	{
+	    $subsduedate = "28 Feb 2019";
+	   // $app->enqueueMessage('Subs due date = '. $subsduedate . ':');
+	    return  $subsduedate; // TODO get this from database
 	}
 }

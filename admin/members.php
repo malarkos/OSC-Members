@@ -9,6 +9,9 @@
  
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+
+// Load Members helper
+//JLoader::register('MembersHelper', __DIR__ . '/helpers/membershelper.php');
  
 // Get an instance of the controller prefixed by Members
 $controller = JControllerLegacy::getInstance('Members');

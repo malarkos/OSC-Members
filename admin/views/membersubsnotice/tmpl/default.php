@@ -16,11 +16,12 @@ $totalowing = 0.00;
 ?>
 
 
+
 <table width="100%" border="0" cellpadding="2" cellspacing="2">
 	<tr>
 		<td align="center">
 			<h2>
-				Ormond Ski Club 2018 Subscription Notice<img
+				Ormond Ski Club <?php echo $this->subsyear;?> Subscription Notice<img
 					src="http://www.ormondskiclub.com.au/images/osclogo58.png"
 					alt="Ormond Ski Club Logo" height="58" width="111">
 			</h2>
@@ -52,19 +53,19 @@ $totalowing = 0.00;
 			Dear <?php echo $this->items[0]->MemberFirstname;?>,<p>
 			
 			<p>
-				This is your 2018 Subscription Notice for Ormond Ski Club with
-				subscriptions due by <B>28th Feb 2018</B>. Please check the
+				This is your <?php echo $this->subsyear;?> Subscription Notice for Ormond Ski Club with
+				subscriptions due by <B><?php echo $this->subsduedate;?></B>. Please check the
 				subscriptions below are correct and advise any errors or required
 				changes. Early payment of subscriptions helps the Club pay for Work
 				Parties and other maintenance costs and Subs need to be paid prior
-				to being able to book for the 2018 Ski season.  If you have any questions about your Subscription notice, please contact the Membership officer at general@ormondskiclub.com.au.
+				to being able to book for the <?php echo $this->subsyear;?> Ski season.  If you have any questions about your Subscription notice, please contact the Membership officer at general@ormondskiclub.com.au.
 		
 		</td>
 	</tr>
 	<tr>
 		<table width="100%" border="2">
 			<td width="70%">
-				<h3>2018 Membership Subscriptions</h3>
+				<h3><?php echo $this->subsyear;?> Membership Subscriptions</h3>
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
@@ -126,7 +127,7 @@ $totalowing = 0.00;
 							<?php endforeach; ?>
 						<?php endif; ?>			
 						<tr>
-							<td>Balance due by <b>28th Feb 2018</b><?php if ($totalowing >= 0) echo "- No payment required.";?></td>
+							<td>Balance due by <b><?php echo $this->subsduedate;?></b><?php if ($totalowing >= 0) echo "- No payment required.";?></td>
 							<td>&nbsp;</td>
 							<td align="right"><b>$<?php if ($totalowing < 0) $totalowing *= -1;  $totalowing = sprintf("%04.2f",$totalowing); echo $totalowing;?></b>
 							</td>

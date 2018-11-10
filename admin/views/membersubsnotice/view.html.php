@@ -32,8 +32,9 @@ class MembersViewMemberSubsNotice extends JViewLegacy
 		//$context = "members.list.admin.members";
 		// Get data from the model
 		$this->items		= $this->get('Items');
-		$this->membersubs 	=$this->get('MemberSub');
-		$this->subsdates     = $this->get('SubsDates');  
+		$this->membersubs 	= $this->get('MemberSub');
+		$this->subsyear     = $this->get('SubsDates');  
+		$this->subsduedate  = $this->get('SubsDueDate');
 		$this->familysubs 	= $this->get('FamilySubs');
 		$this->lockersubs 	= $this->get('LockerSubs');
 		$this->subspayments = $this->get('SubsPayments');

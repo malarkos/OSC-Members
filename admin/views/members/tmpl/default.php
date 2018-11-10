@@ -109,6 +109,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 					$link = JRoute::_('index.php?option=com_members&task=member.edit&MemberID=' . $row->MemberID);
 					$wplink = JRoute::_('index.php?option=com_members&view=memberworkparties&memid=' . $row->MemberID);
 					$subslink = JRoute::_('index.php?option=com_members&view=membersubsnotice&memid=' . $row->MemberID.'&tmpl=component');
+					//$subslink = JRoute::_('index.php?option=com_members&view=membersubsnotice&memid=' . $row->MemberID.'&tmpl=component');
 					$subspaymentlink = JRoute::_('index.php?option=com_members&view=membersubspayment&memid=' . $row->MemberID);
 					$subsreceiptlink = JRoute::_('index.php?option=com_members&view=membersubsreceipt&memid=' . $row->MemberID);
 					$lockerlink = JRoute::_('index.php?option=com_lockers&view=lockers&memid='. $row->MemberID);
