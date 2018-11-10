@@ -44,7 +44,8 @@ $totalowing = 0.00;
 				<td width="50%" align="right"><i><b>Ormond Ski Club</b></br> 1/175 Fitzroy St</br> FITZROY, Vic, 3065</br> email:
 						general@ormondskiclub.com.au</br> web: www.ormondskiclub.com.au</br>
 						ABN: 75004765753
-						<p>Date issued: 21st January 2018</i></td>
+						<p>Date issued: <?php echo date_create('now',timezone_open('Australia/Melbourne'))->format('d F Y');?></i></td>
+						\
 			</tr>
 		</table>
 	</tr>
@@ -76,7 +77,7 @@ $totalowing = 0.00;
 					</thead>
 					<tbody>
 						<tr>
-							<td>Balance as of 30 Nov 2017</td>
+							<td>Balance as of <?php echo $this->subsstartdate;?></td>
 							<td align="right">$<?php echo $this->currentbalance; ?>
 						<?php $totalowing += $this->currentbalance;?></td>
 							<td>$<?php $totalowed = sprintf("%04.2f",$totalowing); echo $totalowed;  ?></td>
@@ -127,7 +128,7 @@ $totalowing = 0.00;
 							<?php endforeach; ?>
 						<?php endif; ?>			
 						<tr>
-							<td>Balance due by <b><?php echo $this->subsduedate;?></b><?php if ($totalowing >= 0) echo "- No payment required.";?></td>
+							<td>Balance due by <b><?php echo $this->subsduedate;?></b><?php if ($totalowing >= 0) echo " - No payment required.";?></td>
 							<td>&nbsp;</td>
 							<td align="right"><b>$<?php if ($totalowing < 0) $totalowing *= -1;  $totalowing = sprintf("%04.2f",$totalowing); echo $totalowing;?></b>
 							</td>

@@ -15,6 +15,8 @@ defined ( '_JEXEC' ) or die ( 'Restricted access' );
  * @since 0.0.1
  */
 class MembersModelMemberSubsNotice extends JModelList {
+    
+    // Function to return current subsyear
 	
     public function returnSubsYear()
     {
@@ -28,6 +30,44 @@ class MembersModelMemberSubsNotice extends JModelList {
         
         return ($subsyear);
     }
+    
+    // Function to return subs start date for the year
+    
+    public function returnSubsStartDate()
+    {
+        
+        // get subs year
+        $subsyear = $this->returnSubsYear();
+        
+        $db = JFactory::getDbo ();
+        $query = $db->getQuery ( true );
+        $query->select ( 'subsstartdate' );
+        $query->from ( 'oscsubsreferencedates' );
+        $query->where ( 'subsyear =  ' . $subsyear  );  // Data only in the first row
+        $db->setQuery ( $query );
+        $subsstartdate = $db->loadResult();
+        
+        return ($subsstartdate);
+    }
+    // Function to return subs end date
+    
+    public function returnSubsPaybyDate()
+    {
+        
+        // get subs year
+        $subsyear = $this->returnSubsYear();
+        
+        $db = JFactory::getDbo ();
+        $query = $db->getQuery ( true );
+        $query->select ( 'subpaybydate' );
+        $query->from ( 'oscsubsreferencedates' );
+        $query->where ( 'subsyear =  ' . $subsyear  );  // Data only in the first row
+        $db->setQuery ( $query );
+        $subsstartdate = $db->loadResult();
+        
+        return ($subsstartdate);
+    }
+    // Function to return subs end date
     
 	/**
 	 * Method to build an SQL query to load the list data.
@@ -303,13 +343,19 @@ class MembersModelMemberSubsNotice extends JModelList {
 		$jinput = JFactory::getApplication ()->input;
 		$memid = $jinput->get ( 'memid', 0 );
 		
+		$subsstartdate = $this->returnSubsStartDate();
+		//$app->enqueueMessage('Subs Start Date = '. $subsstartdate . ':');
+		
 		if ($memid != 0) {
 			// $app->enqueueMessage('MemberID = '.$memid.';');
 			
 			$query->select ( 'sum(Amount)' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate < \'2017-12-01\'');
+			// $query->where ('TransactionDate < \'2017-12-01\''); Original
+			$query->where ('TransactionDate < \'' . $subsstartdate . '\'');
+			
+			//$app->enqueueMessage('query = '. $query . ':');
 			
 			$db->setQuery ( $query );
 			$db->execute ();
@@ -333,13 +379,15 @@ class MembersModelMemberSubsNotice extends JModelList {
 		// get input values
 		$app = JFactory::getApplication ();
 		$jinput = JFactory::getApplication ()->input;
+		$subsstartdate = $this->returnSubsStartDate();
+		
 		$memid = $jinput->get ( 'memid', 0 );
 		if ($memid != 0) {
 			$query = $db->getQuery ( true );
 			$query->select ( '*,date_format(TransactionDate,\'%d %M %Y\') as Transdate' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate > \'2017-11-30\'');
+			$query->where ('TransactionDate >= \'' . $subsstartdate . '\'');
 			$query->where('CreditDebit = \'C\'');
 			
 			$db->setQuery ( $query );
@@ -361,7 +409,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 	    // Function to return year and date by which subs are to be paid
 	    $app = JFactory::getApplication ();
 	    $subsyear = $this->returnSubsYear();
-	    $app->enqueueMessage('Subs year = '. $subsyear . ':');
+	    //$app->enqueueMessage('Subs year = '. $subsyear . ':');
 	    $subsdates = array();
 	    $subdates->subsyear = $subsyear;
 	    
@@ -370,8 +418,21 @@ class MembersModelMemberSubsNotice extends JModelList {
 	
 	public function getSubsDueDate()
 	{
-	    $subsduedate = "28 Feb 2019";
-	   // $app->enqueueMessage('Subs due date = '. $subsduedate . ':');
-	    return  $subsduedate; // TODO get this from database
+	    $subsduedate = $this->returnSubsPaybyDate();
+	    $date = new DateTime($subsduedate);
+	    $newsubdate =  $date->format('d F Y')  ;
+	    
+	    //$app->enqueueMessage('New subs due date = '. $newsubdate . ':');
+	    return  $newsubdate; 
+	}
+	
+	public function getSubsStartDate()
+	{
+	    
+	    $subsstartdate = $this->returnSubsStartDate();
+	    
+	    $date = new DateTime($subsstartdate);
+	    $newsubsdate = $date->format('d F Y')  ;
+	    return $newsubsdate;
 	}
 }

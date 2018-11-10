@@ -35,6 +35,7 @@ class MembersViewMemberSubsNotice extends JViewLegacy
 		$this->membersubs 	= $this->get('MemberSub');
 		$this->subsyear     = $this->get('SubsDates');  
 		$this->subsduedate  = $this->get('SubsDueDate');
+		$this->subsstartdate = $this->get('SubsStartDate');
 		$this->familysubs 	= $this->get('FamilySubs');
 		$this->lockersubs 	= $this->get('LockerSubs');
 		$this->subspayments = $this->get('SubsPayments');
