@@ -6,8 +6,12 @@ JHtml::_ ( 'formbehavior.chosen', 'select' );
 $member = $this->items [0];
 $totalowing = 0.00;
 ?>
-
-<h2>Subs payment for <?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?></h2>
+<?php 
+						$financeeditURL = 'index.php?option=com_subs&view=financeentry&layout=edit&memid='.$this->items[0]->MemberID;
+						
+						$link = JRoute::_($financeeditURL);
+						?> 
+<h2>Subs payment for <?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?><a href="<?php echo $link; ?>"> Add Finance Entry</a></h2>
 <form action="" method="post" name="adminForm" id="adminForm">
 	<table class="table table-striped table-hover">
 					<thead>
@@ -20,7 +24,11 @@ $totalowing = 0.00;
 					</thead>
 					<tbody>
 					<tr>
-						<td>Member Sub for <?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?></td>
+						<td>Member Sub for <?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?>
+						
+						
+						
+						</td>
 						<td>$<?php echo $this->membersubs; ?></td>
 						<td><?php echo $this->items[0]->CurrentSubsPaid; ?></td>
 						<td>Update</td>
@@ -59,6 +67,7 @@ $totalowing = 0.00;
 					</table>
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="boxchecked" value="0" />
+		<input type="hidden" name="memid" value="<?php echo $this->items[0]->MemberID;?>" />
 		<?php echo JHtml::_('form.token'); ?>
 		</form>
 		

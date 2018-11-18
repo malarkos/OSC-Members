@@ -347,7 +347,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 			$query->select ( 'sum(Amount)' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate < \'2016-12-01\'');
+			$query->where ('TransactionDate < \'2016-12-01\''); // TODO get this from database.
 			
 			$db->setQuery ( $query );
 			$db->execute ();
@@ -379,7 +379,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 			$query->select ( '*,date_format(TransactionDate,\'%d %M %Y\') as Transdate' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate > \'2016-11-30\'');
+			$query->where ('TransactionDate > \'2016-11-30\''); // TODO get this from database.
 			$query->where('CreditDebit = \'C\'');
 			
 			$db->setQuery ( $query );

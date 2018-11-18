@@ -79,6 +79,7 @@ class MembersViewMemberSubsPayment extends JViewLegacy
 		
 		JToolBarHelper::title(JText::_('COM_MEMBERS_MEMBER_SUBS_PAYMENT'));
 		JToolBarHelper::custom('membersubspayment.payall','','','Pay All',false);
+		JToolBarHelper::custom('membersubspayment.addFinanceEntry','','','Add Payment',false);
 		//JToolbarHelper::custom('users.unblock', 'unblock.png', 'unblock_f2.png', 'COM_USERS_TOOLBAR_UNBLOCK', true);
 		//JToolBarHelper::custom('printreceipt','','','Print Receipt',false);
 		//JToolBarHelper::addNew('memberworkparty.add');

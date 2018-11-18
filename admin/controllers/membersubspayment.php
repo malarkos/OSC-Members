@@ -248,5 +248,28 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 		return;
 	} // email member
 	
-	
+	public function addFinanceEntry()
+	{
+	    // Function to call class in Finance entry
+	    $memid = JRequest::getVar('memid', null, 'post', 'string');
+	    
+	    JFactory::getApplication()->enqueueMessage('In Add Finance Entry, memid = '.$memid.':');
+	    
+	    $financeeditURL = 'index.php?option=com_subs&view=financeentry&layout=edit&memid='.$memid;
+	    
+	    $this->setRedirect(JRoute::_($financeeditURL),false);
+	    
+	    //JRoute::($menuitem->link.'&Itemid='.$itemid, false)
+	    
+	    // Set return value
+	    $returnstring = "index.php?option=com_members&view=membersubspayment&memid=".$memid;
+	   
+	   // $this->setRedirect(JRoute::_('index.php?option=com_members&view=membersubspayment&memid='.$memid, false));
+	   
+	    // access edit function in finance entry
+	    
+	   
+	    
+	    return;
+	}
 }
