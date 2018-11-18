@@ -44,6 +44,23 @@ class MembersModelMemberSubsPayment extends JModelList {
 		return $query;
 	}
 	
+	public function checkSubinFinances($memid,$fammemid,$memtype)
+	{
+	    // Function to check Sub has a corresponding finance entry
+	    // return true if ok
+	    // return false if not
+	    $financetype = 's';
+	    $creditdebit = 'D';
+	    
+	    // 
+	    // if memtype == m check that an entry exists with s and D
+	    
+	    // if memtype == f or c, check entry exists with fammemid
+	    
+	    // if memtype == l, check entry exists with $fammemid being the locker id
+	    
+	    return true;
+	}
 	// function to return all details about a member
 	public function getMemberDetails() {
 		$db = JFactory::getDbo ();
@@ -68,6 +85,10 @@ class MembersModelMemberSubsPayment extends JModelList {
 	}
 	// other calls
 	public function getMemberSub() {
+	    
+	    
+	    
+	    
 		// Initialize variables.
 		$db = JFactory::getDbo ();
 		$query = $db->getQuery ( true );
@@ -76,6 +97,11 @@ class MembersModelMemberSubsPayment extends JModelList {
 		$app = JFactory::getApplication ();
 		$jinput = JFactory::getApplication ()->input;
 		$memid = $jinput->get ( 'memid', 0 );
+		
+		require_once JPATH_ADMINISTRATOR. '/components/com_subs/helpers/subs.php';
+		
+		$subsyear = SubsHelper::returnSubsYear();
+		//$app->enqueueMessage('Subsyear  = '.$subsyear.';');
 		
 		if ($memid != 0) {
 			// $app->enqueueMessage('MemberID = '.$memid.';');
@@ -109,7 +135,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Graduate' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2017' );
+					$query->where ( 'Year = '.$db->q($subsyear) );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
@@ -118,7 +144,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Student' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2017' );
+					$query->where ( 'Year = '.$db->q($subsyear) );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
@@ -171,6 +197,10 @@ class MembersModelMemberSubsPayment extends JModelList {
 		
 		$memid = $jinput->get ( 'memid', 0 );
 		
+		require_once JPATH_ADMINISTRATOR. '/components/com_subs/helpers/subs.php';
+		
+		$subsyear = SubsHelper::returnSubsYear();
+		
 		// Initialize variables.
 		$db = JFactory::getDbo ();
 		
@@ -212,7 +242,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2017' );
+						$query->where ( 'Year = '.$db->q($subsyear) );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -222,7 +252,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Child' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2017' );
+						$query->where ( 'Year = '.$db->q($subsyear) );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -232,7 +262,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2017' );
+						$query->where ( 'Year = '.$db->q($subsyear) );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -257,6 +287,10 @@ class MembersModelMemberSubsPayment extends JModelList {
 		// Initialize variables.
 		$db = JFactory::getDbo ();
 		$query = $db->getQuery ( true );
+		
+		require_once JPATH_ADMINISTRATOR. '/components/com_subs/helpers/subs.php';
+		
+		$subsyear = SubsHelper::returnSubsYear();
 		
 		if ($memid != 0) {
 			// get if member is on Loa
@@ -286,7 +320,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Locker' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2017' );
+					$query->where ( 'Year = '.$db->q($subsyear) );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$lockerrate = $db->loadResult ();

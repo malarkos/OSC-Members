@@ -44,6 +44,42 @@ class MembersHelper
         return ($subsyear);
     }
     
+    // Function to return subs start date for the year
+    
+    public function returnSubsStartDate()
+    {
+        
+        // get subs year
+        $subsyear = $this->returnSubsYear();
+        
+        $db = JFactory::getDbo ();
+        $query = $db->getQuery ( true );
+        $query->select ( 'subsstartdate' );
+        $query->from ( 'oscsubsreferencedates' );
+        $query->where ( 'subsyear =  ' . $subsyear  );  // Data only in the first row
+        $db->setQuery ( $query );
+        $subsstartdate = $db->loadResult();
+        
+        return ($subsstartdate);
+    }
+    // Function to return subs end date
+    
+    public function returnSubsPaybyDate()
+    {
+        
+        // get subs year
+        $subsyear = $this->returnSubsYear();
+        
+        $db = JFactory::getDbo ();
+        $query = $db->getQuery ( true );
+        $query->select ( 'subpaybydate' );
+        $query->from ( 'oscsubsreferencedates' );
+        $query->where ( 'subsyear =  ' . $subsyear  );  // Data only in the first row
+        $db->setQuery ( $query );
+        $subsstartdate = $db->loadResult();
+        
+        return ($subsstartdate);
+    }
     /*
      *  Function to calculate work party discount for members and family members
      */

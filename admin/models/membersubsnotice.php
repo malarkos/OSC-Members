@@ -404,11 +404,14 @@ class MembersModelMemberSubsNotice extends JModelList {
 	public function getSubsDates()
 	{
 	    
-	    JLoader::import('MembersHelper',__DIR__ . '/helpers/membershelper.php');
+	    //JLoader::import('MembersHelper',__DIR__ . '/helpers/membershelper.php');
+	    
+	    //require_once JPATH_COMPONENT . '/helpers/membershelper.php';
 	    
 	    // Function to return year and date by which subs are to be paid
-	    $app = JFactory::getApplication ();
+	   // $app = JFactory::getApplication ();
 	    $subsyear = $this->returnSubsYear();
+	    //$subyear = MembersHelper::returnSubsYear();
 	    //$app->enqueueMessage('Subs year = '. $subsyear . ':');
 	    $subsdates = array();
 	    $subdates->subsyear = $subsyear;
