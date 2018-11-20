@@ -39,17 +39,45 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	 */
 	public function payall()
 	{
-		
-		// build return URL
+	    require_once JPATH_ADMINISTRATOR. '/components/com_subs/helpers/subs.php';
+	    $subsyear = SubsHelper::returnSubsYear();
+	    
+	    // function to set paid to Yes for all entries for that member
+	    $totalowing = JRequest::getVar('totalowing', null, 'post', 'string');
+	    $totalremain = JRequest::getVar('totalremain', null, 'post', 'string');
+	    
+	    JFactory::getApplication()->enqueueMessage('Totalowing= '.$totalowing.':');
+	    JFactory::getApplication()->enqueueMessage('Total remain= '.$totalremain.':');
+	  	// build return URL
 		$jinput = JFactory::getApplication ()->input;
 		$memid = $jinput->get ( 'memid', 0 );
 		
 		JFactory::getApplication()->enqueueMessage('In payall');
 		
+		if ($memid == 0) { // error not set
+		    JFactory::getApplication()->enqueueMessage('Error: invalid member id');
+		    return false;
+		}
+		
 		// update member
 		// Get the DB object
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
+		
+		// Need to a subs entry if not already paid.
+		$today=time();
+		$transactiondate = date("Y-m-d",$today);
+		$creditdebit = "C";
+		$comment= $subsyear . ' Subscriptions Payment';
+		$description = $comment;
+		$amount = $totalowing;
+		$amountnogst = (10*$amount)/11;
+		$gst = $amount/11;
+		$membertype = "m";
+		$financetype = 's';
+		SubsHelper::addFinanceEntry($memid,$transactiondate,$creditdebit,$amountnogst,$gst,$amount,$description,$comment,$financetype,$subsyear,$membertype,$memid);
+		
+		
 		
 		$subsvalue = 'Yes';
 		$fields = array('CurrentSubsPaid = '. $db->quote($subsvalue));

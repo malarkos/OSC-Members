@@ -347,7 +347,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 			$query->select ( 'sum(Amount)' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate < \'2016-12-01\''); // TODO get this from database.
+			$query->where ('TransactionDate < \'2018-12-01\''); // TODO get this from database.
 			
 			$db->setQuery ( $query );
 			$db->execute ();
@@ -364,6 +364,10 @@ class MembersModelMemberSubsPayment extends JModelList {
 	// Function to return any payments since 30 Nov
 	public function getSubsPayments()
 	{
+	    // Get subs year
+	    require_once JPATH_ADMINISTRATOR. '/components/com_subs/helpers/subs.php';
+	    $subsyear = SubsHelper::returnSubsYear();
+	    
 		// Initialize variables.
 		$db = JFactory::getDbo ();
 		$query = $db->getQuery ( true );
@@ -379,13 +383,14 @@ class MembersModelMemberSubsPayment extends JModelList {
 			$query->select ( '*,date_format(TransactionDate,\'%d %M %Y\') as Transdate' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate > \'2016-11-30\''); // TODO get this from database.
+			$query->where('FinanceYear = '.$subsyear);
+			$query->where('FinanceType = \'s\'');
 			$query->where('CreditDebit = \'C\'');
 			
 			$db->setQuery ( $query );
 			$db->execute ();
 			$num_rows = $db->getNumRows ();
-			//JFactory::getApplication()->enqueueMessage('Num rows = '.$num_rows);
+			JFactory::getApplication()->enqueueMessage('Num rows = '.$num_rows);
 			$subspayment = $db->loadObjectList ();
 			
 			
@@ -394,4 +399,6 @@ class MembersModelMemberSubsPayment extends JModelList {
 		return $subspayment;
 		
 	} // function
+	
+	
 }
