@@ -278,6 +278,7 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	
 	public function addFinanceEntry()
 	{
+	    $db    = JFactory::getDbo();
 	    // Function to call class in Finance entry
 	    $memid = JRequest::getVar('memid', null, 'post', 'string');
 	    
@@ -285,7 +286,8 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	    
 	    $financeeditURL = 'index.php?option=com_subs&view=financeentry&layout=edit&memid='.$memid;
 	    
-	    $this->setRedirect(JRoute::_($financeeditURL),false);
+	    
+	    $this->setRedirect(JRoute::_($financeeditURL,false));
 	    
 	    //JRoute::($menuitem->link.'&Itemid='.$itemid, false)
 	    
