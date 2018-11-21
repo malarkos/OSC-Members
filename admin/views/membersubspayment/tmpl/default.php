@@ -84,10 +84,17 @@ $link = JRoute::_($financeeditURL);
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($this->subspayments as $i => $row) :?>
+		<?php foreach ($this->subspayments as $i => $row) :
+		
+		$subspaymentlink = JRoute::_('index.php?option=com_subs&view=financeentry&layout=edit&FinanceID=' . $row->FinanceID);
+		?>
     		<tr>
     			<td><?php echo $row->Transdate;?></td>
-    			<td><?php echo $row->Amount;$totalpaid += $row->Amount;?></td>
+    			<td>
+    				<a href="<?php echo $subspaymentlink; ?>">
+    					<?php echo $row->Amount;$totalpaid += $row->Amount;?>
+    				</a>
+    			</td>
     		</tr>
     	<?php endforeach; ?>
     	<tr>
