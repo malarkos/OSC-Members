@@ -14,8 +14,8 @@ $financeeditURL = 'index.php?option=com_subs&view=financeentry&layout=edit&memid
 $link = JRoute::_($financeeditURL);
 
 ?>
-<h2>Subs payment for <?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?><a
-		href="<?php echo $link; ?>"> Add Finance Entry</a>
+<h2>Subs payment for <?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?>
+
 </h2>
 <form action="" method="post" name="adminForm" id="adminForm">
 	<table class="table table-striped table-hover">
@@ -24,7 +24,7 @@ $link = JRoute::_($financeeditURL);
 				<th width="50%">Description</th>
 				<th width="20%">Amount</th>
 				<th width="20%">Paid</th>
-				<th width="10%">Update</th>
+				
 			</tr>
 		</thead>
 		<tbody>
@@ -32,7 +32,7 @@ $link = JRoute::_($financeeditURL);
 				<td>Member Sub for <?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?></td>
 				<td>$<?php echo $this->membersubs; $totalowing += $this->membersubs; ?></td>
 				<td><?php echo $this->items[0]->CurrentSubsPaid; ?></td>
-				<td>Update</td>
+				
 			</tr>
 			<?php // Section for showing family subs?>
 			<?php if (!empty($this->familysubs)) : ?>
@@ -45,7 +45,7 @@ $link = JRoute::_($financeeditURL);
 						$<?php echo $row->Subsval; $totalowing += $row->Subsval;?>
 					</td>
 					<td><?php echo $row->CurrentSubsPaid;?></td>
-					<td>Update</td>
+					
 				</tr>
 			<?php endforeach; ?>
 			<?php endif; ?>
@@ -60,7 +60,7 @@ $link = JRoute::_($financeeditURL);
 							$<?php echo $row->LockerRate; $totalowing += $row->LockerRate;?>
 						</td>
 						<td><?php echo $row->CurrentSubsPaid;?></td>
-						<td>Update</td>
+						
 					</tr>
 				<?php endforeach; ?>
 			<?php endif; ?>
