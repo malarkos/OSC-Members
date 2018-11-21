@@ -21,9 +21,9 @@ $link = JRoute::_($financeeditURL);
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th width="50%">Description</th>
-				<th width="20%">Amount</th>
-				<th width="20%">Paid</th>
+				<th>Description</th>
+				<th>Amount</th>
+				<th>Paid</th>
 				
 			</tr>
 		</thead>
