@@ -45,7 +45,7 @@ $totalowing = 0.00;
 						general@ormondskiclub.com.au</br> web: www.ormondskiclub.com.au</br>
 						ABN: 75004765753
 						<p>Date issued: <?php echo date_create('now',timezone_open('Australia/Melbourne'))->format('d F Y');?></i></td>
-						\
+						
 			</tr>
 		</table>
 	</tr>
