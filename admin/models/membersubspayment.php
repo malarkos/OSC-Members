@@ -390,7 +390,7 @@ class MembersModelMemberSubsPayment extends JModelList {
 			$db->setQuery ( $query );
 			$db->execute ();
 			$num_rows = $db->getNumRows ();
-			JFactory::getApplication()->enqueueMessage('Num rows = '.$num_rows);
+			//JFactory::getApplication()->enqueueMessage('Num rows = '.$num_rows);
 			$subspayment = $db->loadObjectList ();
 			
 			
