@@ -34,6 +34,98 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 		return $model;
 	}
 	
+	
+	public function payonesub()
+	{
+	    require_once JPATH_ADMINISTRATOR. '/components/com_subs/helpers/subs.php';
+	    $subsyear = SubsHelper::returnSubsYear();
+	    
+	    // Function to pay just one sub
+	    //JFactory::getApplication()->enqueueMessage('Pay only one sub');
+	    
+	    $jinput = JFactory::getApplication ()->input;
+	    $memberid = $jinput->get('MemberID');
+	    $memid = $jinput->get('ID');
+	    $memtype = $jinput->get('memtype');
+	    $memtypelong = "";
+	    JFactory::getApplication()->enqueueMessage('Memtype='.$memtype.':');
+	    
+	    if ($memtype == 'm' || $memtype == 'f') 
+	    {
+	        $memtypelong = SubsHelper::returnMemberType($memtype, $memid);
+	        JFactory::getApplication()->enqueueMessage('Memtypelong ='.$memtypelong);
+	        if ($memtypelong == "Graduate") $memtypeval = "m";
+	        if ($memtypelong == "Student") $memtypeval = "s";
+	        if ($memtypelong == "Spouse") $memtypeval = "f";
+	        if ($memtypelong == "Child") $memtypeval = "c";
+	        if ($memtypelong == "Buddy") 
+	        {  
+	            $memtypeval = "b";
+	            $memtypelong = "Spouse"; // no separate buddy rate
+	        }
+	    }
+	    
+	    
+	    /*if ($memtype == 'f') $memtypelong = "Spouse";
+	    if ($memtype == 'c') $memtypelong = "Child";
+	    if ($memtype == 'b') $memtypelong = "Buddy";*/
+	    
+	    if ($memtype == 'l') 
+	    {
+	        $memtypelong = "Locker";
+	        $memtypeval = $memtype;
+	    }
+	    
+	    $this->setRedirect(JRoute::_('index.php?option=com_members&view=membersubspayment&memid='.$memberid, false));
+	    
+	    //JFactory::getApplication()->enqueueMessage('Memtype='.$memtype.': memid = '.$memid);
+	    
+	    /*($returnurl = "";
+	    if  (isset($refererURL))
+	    {
+	        $returnurl= $session->get( 'refererURL');
+	        $this->setRedirect($returnurl);
+	    }*/
+	    
+	    // set up db link
+	    $db    =  JFactory::getDbo();
+	    $query = $db->getQuery(true);
+	    // check if already paid by checking current subs paid flag
+	    
+	    if ( SubsHelper::checkIfSubPaid($memtype,$memid) == 'No')
+	    {
+	        //JFactory::getApplication()->enqueueMessage('That sub has not been paid!');
+	        
+	        // Get sub rate
+	        $amount = SubsHelper::returnSubrate($subsyear,$memtypelong);
+	        $today=time();
+	        $transactiondate = date("Y-m-d",$today);
+	        $creditdebit = "C";
+	        $comment= $subsyear . ' Subscriptions Payment';
+	        $description = $comment;
+	        $amountnogst = (10*$amount)/11;
+	        $gst = $amount/11;
+	        $membertype = $memtypeval;
+	        $financetype = 's';
+	        SubsHelper::addFinanceEntry($memberid,$transactiondate,$creditdebit,$amountnogst,$gst,$amount,$description,$comment,$financetype,$subsyear,$membertype,$memid);
+	        SubsHelper::setCurrentSubsPaid($memid,"Yes",$memtype);
+	        
+	        return ;
+	        
+	    }
+	    else if ( SubsHelper::checkIfSubPaid($memtype,$memid) == 'Yes')
+	    {
+	        JFactory::getApplication()->enqueueMessage('That sub has already been paid!');
+	        return ;
+	        
+	    } else {
+	        JFactory::getApplication()->enqueueMessage('An unknown error occurred.');
+	        
+	    }
+	    
+	    
+	    return;
+	}
 	/*
 	 * Function to update all Member subs to paid
 	 */
@@ -46,8 +138,8 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	    $totalowing = JRequest::getVar('totalowing', null, 'post', 'string');
 	    $totalremain = JRequest::getVar('totalremain', null, 'post', 'string');
 	    
-	    JFactory::getApplication()->enqueueMessage('Totalowing= '.$totalowing.':');
-	    JFactory::getApplication()->enqueueMessage('Total remain= '.$totalremain.':');
+	    // JFactory::getApplication()->enqueueMessage('Totalowing= '.$totalowing.':');
+	    // JFactory::getApplication()->enqueueMessage('Total remain= '.$totalremain.':');
 	  	// build return URL
 		$jinput = JFactory::getApplication ()->input;
 		$memid = $jinput->get ( 'memid', 0 );

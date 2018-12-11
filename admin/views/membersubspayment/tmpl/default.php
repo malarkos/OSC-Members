@@ -24,34 +24,45 @@ $link = JRoute::_($financeeditURL);
 				<th>Description</th>
 				<th>Amount</th>
 				<th>Paid</th>
+				<th>Pay Individual subs</th>
 				
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Member Sub for <?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?></td>
+			<?php $memlink = JRoute::_('index.php?option=com_members&view=member&layout=edit&MemberID=' . $this->items[0]->MemberID);
+			$payonesublink = JRoute::_('index.php?option=com_members&task=membersubspayment.payonesub&memtype=m&MemberID='.$this->items[0]->MemberID.'&ID=' . $this->items[0]->MemberID);
+				?>
+				<td>Member Sub for <A href="<?php echo $memlink; ?>"><?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?></A></td>
 				<td>$<?php echo $this->membersubs; $totalowing += $this->membersubs; ?></td>
 				<td><?php echo $this->items[0]->CurrentSubsPaid; ?></td>
+				<td><a href="<?php echo $payonesublink;?>" >Pay this only</a></td>
 				
 			</tr>
 			<?php // Section for showing family subs?>
 			<?php if (!empty($this->familysubs)) : ?>
-				<?php foreach ($this->familysubs as $i => $row) :?>
+				<?php foreach ($this->familysubs as $i => $row) :
+				$fammemlink = JRoute::_('index.php?option=com_members&view=memberfamily&layout=edit&FamilyMemberID=' . $row->FamilyMemberID);
+				$payonesublink = JRoute::_('index.php?option=com_members&task=membersubspayment.payonesub&memtype=f&MemberID='.$this->items[0]->MemberID.'&ID=' . $row->FamilyMemberID); // TO DO work out if spouse, child or buddy
+				?>
 				<tr>
 					<td>
-						<?php echo $row->FamilyMembershipType;?> membership for <?php echo $row->FamilyMemberFirstname; echo " "; echo $row->FamilyMemberSurname;?>
+						<?php echo $row->FamilyMembershipType;?> membership for <a href="<?php echo $fammemlink; ?>" > <?php echo $row->FamilyMemberFirstname; echo " "; echo $row->FamilyMemberSurname;?></a>
 					</td>
 					<td align="right">
 						$<?php echo $row->Subsval; $totalowing += $row->Subsval;?>
 					</td>
 					<td><?php echo $row->CurrentSubsPaid;?></td>
+					<td><a href="<?php echo $payonesublink;?>" >Pay this only</a></td>
 					
 				</tr>
 			<?php endforeach; ?>
 			<?php endif; ?>
 			<?php // section for showing locker subs?>
 			<?php if (!empty($this->lockersubs)) : ?>
-				<?php foreach ($this->lockersubs as $i => $row) :?>
+				<?php foreach ($this->lockersubs as $i => $row) :
+				$payonesublink = JRoute::_('index.php?option=com_members&task=membersubspayment.payonesub&memtype=l&MemberID='.$this->items[0]->MemberID.'&ID=' . $row->id);
+				?>
 					<tr>
 						<td>
 							Subscription for Locker <?php echo $row->LockerNumber; ?>   
@@ -60,7 +71,7 @@ $link = JRoute::_($financeeditURL);
 							$<?php echo $row->LockerRate; $totalowing += $row->LockerRate;?>
 						</td>
 						<td><?php echo $row->CurrentSubsPaid;?></td>
-						
+						<td><a href="<?php echo $payonesublink;?>" >Pay this only</a></td>
 					</tr>
 				<?php endforeach; ?>
 			<?php endif; ?>
