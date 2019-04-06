@@ -112,7 +112,7 @@ class MembersModelMemberSubsNotice extends JModelList {
 		$subsyear = $this->returnSubsYear();
 		
 		if ($memid != 0) {
-			// $app->enqueueMessage('MemberID = '.$memid.';');
+			$app->enqueueMessage('MemberID = '.$memid.';');
 			
 			// get member type to get the correct subs rates
 			$query->select ( 'MemberType' );
@@ -122,33 +122,37 @@ class MembersModelMemberSubsNotice extends JModelList {
 			$db->setQuery ( $query );
 			$db->execute ();
 			$membertype = $db->loadResult ();
-			
+			$app->enqueueMessage('MemberType = '.$membertype.';');
 			// get if member is on Loa
 			$query = $db->getQuery ( true );
 			$query->select ( 'MemberLeaveofAbsence' );
 			$query->from ( 'members' );
 			$query->where ( 'MemberID = ' . $memid );
 			
+			
 			$db->setQuery ( $query );
 			$db->execute ();
 			$memberloa = $db->loadResult ();
+			$app->enqueueMessage('MemberLoA = '.$memberloa.';');
 			// $app->enqueueMessage('Membertype = '. $membertype . ':');
 			
 			if ($memberloa == "No") {
-				
+			    $app->enqueueMessage('In LoA = No');
 				if ($membertype == "Life" || $membertype == "Hon Life") {
 					// $app->enqueueMessage('In Life and Hon Life');
 					$membersub = 0;
 				} elseif ($membertype == "Graduate") {
-					
+				    $app->enqueueMessage('In Graduate');
 					// check for Summer usage
 					$query = $db->getQuery ( true );
 					$query->select ( 'SummerUsageOnly' );
 					$query->from ( 'members' );
 					$query->where ( 'MemberID = ' . $memid );
+					$app->enqueueMessage('Summer Usage query= '.$query.';');
 					$db->setQuery ( $query );
 					$db->execute ();
 					$summerusage = $db->loadResult ();
+					$app->enqueueMessage('Summer Usage = '.$summerusage.';');
 					
 					if ($summerusage == "No") 
 					{
@@ -160,6 +164,8 @@ class MembersModelMemberSubsNotice extends JModelList {
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
+					$app->enqueueMessage('MemberSub = '.$membersub.';');
+					
 					} else if ($summerusage == "Yes") {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Summer' );
