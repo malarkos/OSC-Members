@@ -21,6 +21,22 @@ class MembersModelMemberSubsReceipt extends JModelList {
 	 *
 	 * @return string An SQL query
 	 */
+    
+    // Function to return current subsyear
+    
+    public function returnSubsYear()
+    {
+        $db = JFactory::getDbo ();
+        $query = $db->getQuery ( true );
+        $query->select ( 'subsyear' );
+        $query->from ( 'oscreference' );
+        $query->where ( 'id = 1 '  );  // Data only in the first row
+        $db->setQuery ( $query );
+        $subsyear = $db->loadResult();
+        
+        return ($subsyear);
+    }
+    
 	protected function getListQuery() {
 		// Initialize variables.
 		$db = JFactory::getDbo ();
@@ -77,6 +93,8 @@ class MembersModelMemberSubsReceipt extends JModelList {
 		$jinput = JFactory::getApplication ()->input;
 		$memid = $jinput->get ( 'memid', 0 );
 		
+		$subsyear = $this->returnSubsYear();
+		
 		if ($memid != 0) {
 			// $app->enqueueMessage('MemberID = '.$memid.';');
 			
@@ -109,7 +127,8 @@ class MembersModelMemberSubsReceipt extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Graduate' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2018' );
+					//$query->where ( 'Year = 2018' );
+					$query->where ( 'Year = ' . $subsyear );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
@@ -118,7 +137,8 @@ class MembersModelMemberSubsReceipt extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Student' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2018' );
+					$query->where ( 'Year = ' . $subsyear );
+					//$query->where ( 'Year = 2018' );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
@@ -170,6 +190,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 		$jinput = JFactory::getApplication ()->input;
 		
 		$memid = $jinput->get ( 'memid', 0 );
+		$subsyear = $this->returnSubsYear();
 		
 		// Initialize variables.
 		$db = JFactory::getDbo ();
@@ -212,7 +233,8 @@ class MembersModelMemberSubsReceipt extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = ' . $subsyear );
+						//$query->where ( 'Year = 2018' );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -222,7 +244,8 @@ class MembersModelMemberSubsReceipt extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Child' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = ' . $subsyear );
+						//$query->where ( 'Year = 2018' );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -232,7 +255,8 @@ class MembersModelMemberSubsReceipt extends JModelList {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Spouse' );
 						$query->from ( 'oscmemberrates' );
-						$query->where ( 'Year = 2018' );
+						$query->where ( 'Year = ' . $subsyear );
+						//$query->where ( 'Year = 2018' );
 						$db->setQuery ( $query );
 						$db->execute ();
 						$famsub = $db->loadResult ();
@@ -253,7 +277,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 		$jinput = JFactory::getApplication ()->input;
 		
 		$memid = $jinput->get ( 'memid', 0 );
-		
+		$subsyear = $this->returnSubsYear();
 		// Initialize variables.
 		$db = JFactory::getDbo ();
 		$query = $db->getQuery ( true );
@@ -286,7 +310,8 @@ class MembersModelMemberSubsReceipt extends JModelList {
 					$query = $db->getQuery ( true );
 					$query->select ( 'Locker' );
 					$query->from ( 'oscmemberrates' );
-					$query->where ( 'Year = 2018' );
+					$query->where ( 'Year = ' . $subsyear );
+					//$query->where ( 'Year = 2018' );
 					$db->setQuery ( $query );
 					$db->execute ();
 					$lockerrate = $db->loadResult ();
@@ -313,7 +338,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 			$query->select ( 'sum(Amount)' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate < \'2017-12-01\'');
+			$query->where ('TransactionDate < \'2018-12-01\''); // TODO parameterise this.
 			
 			$db->setQuery ( $query );
 			$db->execute ();
@@ -345,7 +370,7 @@ class MembersModelMemberSubsReceipt extends JModelList {
 			$query->select ( '*,date_format(TransactionDate,\'%d %M %Y\') as Transdate' );
 			$query->from ( 'finances' );
 			$query->where ( 'MemberID = ' . $memid );
-			$query->where ('TransactionDate > \'2017-11-30\'');
+			$query->where ('TransactionDate > \'2018-11-30\''); // TODO parameterise thise
 			$query->where('CreditDebit = \'C\'');
 			$query->where('Description LIKE \'%subs%\'');
 			

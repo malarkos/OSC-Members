@@ -31,7 +31,7 @@ $memid = $jinput->get ( 'memid', 0 );
 	<tr>
 		<td align="center">
 			<h2>
-				Ormond Ski Club 2018 Subscription Notice<img
+				Ormond Ski Club 2019 Subscription Notice<img
 					src="http://www.ormondskiclub.com.au/images/osclogo58.png"
 					alt="Ormond Ski Club Logo" height="58" width="111">
 			</h2>
@@ -87,7 +87,7 @@ $memid = $jinput->get ( 'memid', 0 );
 					</thead>
 					<tbody>
 						<tr>
-							<td>Balance as of 30 Nov 2017</td>
+							<td>Balance as of 30 Nov 2018</td>
 							<td align="right">$<?php echo $this->currentbalance; ?>
 						<?php $totalowing += $this->currentbalance;?></td>
 							<td>$<?php $totalowed = sprintf("%04.2f",$totalowing); echo $totalowed;  ?></td>
@@ -145,7 +145,7 @@ $memid = $jinput->get ( 'memid', 0 );
 							<?php endforeach; ?>
 						<?php endif; ?>			
 						<tr>
-							<td>Balance due by <b>28th Feb 2018</b><?php if ($totalowing >= 0) echo " - No payment required.";?></td>
+							<td>Balance due by <b>28th Feb 2019</b><?php if ($totalowing >= 0) echo " - No payment required.";?></td>
 							<td>&nbsp;</td>
 							<td align="right"><b>$<?php if ($totalowing < 0) $totalowing *= -1;  $totalowing = sprintf("%04.2f",$totalowing); echo $totalowing;?></b>
 							</td>
