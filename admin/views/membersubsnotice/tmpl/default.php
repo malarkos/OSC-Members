@@ -85,6 +85,12 @@ $totalowing = 0.00;
 						<tr>
 							<td>
 							<?php echo $member->MemberType;?> Membership
+							<?php 
+							if ($member->SummerUsageOnly == "Yes") {
+							      echo  " - Summer Usage only";
+							}
+							
+							?>
 						</td>
 							<td align="right">$<?php echo $this->membersubs; ?> <?php $totalowing -= $this->membersubs;?>
 						</td>
