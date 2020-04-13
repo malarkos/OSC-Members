@@ -119,6 +119,8 @@ class MembersModelUpdateMember extends JModelForm
 		$memberaddress = $data['MemberHomeAddress'];
 
 		// set the data into a query to update the record
+		// TODO: validate data
+		// TODO: save all details
 		$db		= $this->getDbo();
 		$query	= $db->getQuery(true);
 		$query->clear();
