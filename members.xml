@@ -3,14 +3,14 @@
  
 	<name>COM_MEMBERS</name>
 	<!-- The following elements are optional and free of formatting constraints -->
-	<creationDate>08 Dec 2019</creationDate>
+	<creationDate>15 Apr 2020</creationDate>
 	<author>Geoff Markley</author>
 	<authorEmail>geoffm@labyrinth.net.au</authorEmail>
 	<authorUrl>http://www.ormondskiclub.com.au</authorUrl>
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
 	<!--  The version string is recorded in the components table -->
-	<version>1.10.29</version>
+	<version>1.11.07</version>
 	<!-- The description is optional and defaults to the name -->
 	<description>COM_MEMBERS_DESCRIPTION</description>
  
@@ -49,9 +49,8 @@
 	
 	</files>
      <languages folder="site/language">
-        		<language tag="en-GB">en-GB/en-GB.com_members.ini</language>
-                <language tag="en-GB">en-GB/en-GB.com_members.sys.ini</language>
-	</languages>
+      		<language tag="en-GB">en-GB/en-GB.com_members.ini</language>
+  	</languages>
 	<administration>
 		<!-- Administration Menu Section -->
 		<menu link='index.php?option=com_members'>COM_MEMBERS_MENU</menu>

@@ -125,9 +125,11 @@ class MembersModelMembers extends JModelForm
 	 */
 	public function save($data)
 	{
+	    
+	    JFactory::getApplication()->enqueueMessage('In model save:');
+	    
 		// get the table
 		$table = $this->getTable('Members');
-		
 		
 		// save the data
 		if (!$table->save( $data )) {

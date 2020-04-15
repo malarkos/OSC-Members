@@ -117,6 +117,8 @@ class MembersModelUpdateMember extends JModelForm
 		// set the variables from the passed data
 		$id = $data['id'];
 		$memberaddress = $data['MemberHomeAddress'];
+		
+		JFactory::getApplication()->enqueueMessage('MemberHomeAddress:'.$memberaddress.':');
 
 		// set the data into a query to update the record
 		// TODO: validate data

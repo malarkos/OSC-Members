@@ -50,6 +50,9 @@ class MembersControllerMembers extends MembersController
 	  */
 	 public function save()
 	 {
+	     
+	     JFactory::getApplication()->enqueueMessage('In save:');
+	     
 	 	// Check for request forgeries.
 	 	JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 	 
@@ -58,7 +61,7 @@ class MembersControllerMembers extends MembersController
 	 	
 	 	// Get the user data.
 	 	$data = $app->input->post->get('jform', array(), 'array');
-	 
+	 	JFactory::getApplication()->enqueueMessage('form data'.$data);
 	 	
 	 	// Validate the posted data.
 	 	$form = $model->getForm();
@@ -104,6 +107,7 @@ class MembersControllerMembers extends MembersController
 	 	
 	 	// Attempt to save the data.
 	 	$return = $model->save($data);
+	 	
 	 	
 	 	// Check for errors.
 	 	if ($return === false)
