@@ -272,6 +272,14 @@
 			<option value="No">No</option>
 			<option value="Yes">Yes</option>
 		 </field>
+		<field name="NextBookingNum" 
+			type="integer" 
+			default="1" 
+			label="COM_MEMBERS_MEMBER_NEXTBOOKINGNUM_LABEL" 
+			description="COM_MEMBERS_MEMBER_NEXTBOOKINGNUM_DESC" 
+			first="1" 
+			last="100" 
+			step="1" />
 		
 		<field name="MemberComments" type="textarea" default="" label="Comments" description="" rows="10" cols="5" />
 	</fieldset>
