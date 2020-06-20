@@ -9,7 +9,11 @@
            		class="readonly"
 				/>
 				 
-	
+	 	<field 	name="joomlauserid"
+		       			type="JoomlaUser"
+		       			description="COM_MEMBERS_MEMBER_JOOMLAUSER_DESC"
+                       	label="COM_MEMBERS_MEMBER_JOOMLAUSER_LABEL"
+                />
 		<field
 				name="MemberTitle"
 				type="text"
