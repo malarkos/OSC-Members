@@ -47,4 +47,18 @@ class MembersModelMemberWorkParties extends JModelList
 		
 		return $query;
 	}
+	
+	//override default list
+	protected function populateState($ordering = null, $direction = null)
+	{
+	    // Initialise variables.
+	    $app = JFactory::getApplication();
+	    
+	    // List state information
+	    $limit = $app->getUserStateFromRequest('global.list.limit', 'limit', $app->get('list_limit'));
+	    
+	    $limit = 2000;  // set list limit
+	    
+	    
+	}
 }
