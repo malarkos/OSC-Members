@@ -26,7 +26,7 @@ JHtml::_('formbehavior.chosen', 'select');
     else if ($wpdays < 140) $wpdisc = 70;
     else $wpdisc = 80;
     
-   
+    $wptotal = 0;
 
 ?>
 <?php echo $this->membername; ?> has <?php echo $this->workpartytotal; ?> work party days and is entitled to <?php echo $wpdisc; ?>% discount on winter bookings.
@@ -43,13 +43,16 @@ JHtml::_('formbehavior.chosen', 'select');
 				<?php echo JHtml::_('grid.checkall'); ?>
 			</th>
 			
-			<th width="30%">
+			<th width="20%">
 				<?php echo JText::_('COM_MEMBERS_WORKPARTY_DATE') ;?>
 			</th>
-			<th width="30%">
+			<th width="20%">
 				<?php echo JText::_('COM_MEMBERS_WORKPARTY_DAYS') ;?>
 			</th>
-			<th width="30%">
+			<th width="20%">
+				<?php echo JText::_('COM_MEMBERS_WORKPARTY_TOTAL') ;?>
+			</th>
+			<th width="20%">
 				<?php echo JText::_('COM_MEMBERS_WORKPARTY_COMMENT') ;?>
 			</th>
 			
@@ -83,7 +86,13 @@ JHtml::_('formbehavior.chosen', 'select');
 								
 								<?php echo $row->WorkPartyDays; ?>
 						</td>
-                                                
+                          <td>
+								
+								<?php
+								    $wptotal += $row->WorkPartyDays; 
+								    echo $wptotal;
+								?>
+						</td>                      
 						                                              
 						<td>
 								<?php echo $row->Comments; ?>

@@ -53,15 +53,25 @@ class MembersModelMemberWorkParties extends JModelList
 	public function getWorkPartyTotal()
 	{
 	    
-	    $workpartytotal = 20;  
+	    $workpartytotal = 0;  
 	    
-	    /*$db = JFactory::getDbo ();
-	    $query = $db->getQuery ( true );
-	    $query->select ( 'subsstartdate' );
-	    $query->from ( 'oscsubsreferencedates' );
-	    $query->where ( 'subsyear =  ' . $subsyear  );  // Data only in the first row
-	    $db->setQuery ( $query );
-	    $subsstartdate = $db->loadResult();*/
+	    // Initialize variables.
+	    $db    = JFactory::getDbo();
+	    $query = $db->getQuery(true);
+	    
+	    // get values
+	    $jinput = JFactory::getApplication()->input;
+	    
+	    $memid = $jinput->get('memid',0);
+	    
+	    if ($memid != 0) {
+    	    $query = $db->getQuery ( true );
+    	    $query->select ( 'sum(WorkPartyDats) as totalworkparty' );
+    	    $query->from('workparty');
+    	    $query->where('MemberID = ' . $memid);
+    	    $db->setQuery ( $query );
+    	    $workpartytotal = $db->loadResult();
+	    }
 	    
 	    return ($workpartytotal);
 	}
@@ -71,13 +81,23 @@ class MembersModelMemberWorkParties extends JModelList
 	    
 	    $membername = "Harry";
 	    
-	    /*$db = JFactory::getDbo ();
-	     $query = $db->getQuery ( true );
-	     $query->select ( 'subsstartdate' );
-	     $query->from ( 'oscsubsreferencedates' );
-	     $query->where ( 'subsyear =  ' . $subsyear  );  // Data only in the first row
-	     $db->setQuery ( $query );
-	     $subsstartdate = $db->loadResult();*/
+	    // Initialize variables.
+	    $db    = JFactory::getDbo();
+	    $query = $db->getQuery(true);
+	    
+	    // get values
+	    $jinput = JFactory::getApplication()->input;
+	    
+	    $memid = $jinput->get('memid',0);
+	    
+	    if ($memid != 0) {
+	        $query = $db->getQuery ( true );
+	        $query->select ( 'concat(m.MemberFirstname,\' \',m.MemberSurname) as membername' );
+	        $query->from('members AS m');
+	        $query->where('MemberID = ' . $memid);
+	        $db->setQuery ( $query );
+	        $membername = $db->loadResult();
+	    }
 	    
 	    return ($membername);
 	}
