@@ -14,7 +14,22 @@ JHtml::_('formbehavior.chosen', 'select');
 
 ?>
 <h2>Work Party summary</h2>
-<?php echo $this->membername; ?> has <?php echo $this->workpartytotal; ?> work party days and is entitled to Z% discount on winter bookings.
+<?php 
+    $wpdays = $this->workpartytotal;
+    
+    if ($wpdays < 20) $wpdisc = 0;
+    else if ($wpdays < 40) $wpdisc = 20;
+    else if ($wpdays < 60) $wpdisc = 30;
+    else if ($wpdays < 80) $wpdisc = 40;
+    else if ($wpdays < 100) $wpdisc = 50;
+    else if ($wpdays < 120) $wpdisc = 60;
+    else if ($wpdays < 140) $wpdisc = 70;
+    else $wpdisc = 80;
+    
+   
+
+?>
+<?php echo $this->membername; ?> has <?php echo $this->workpartytotal; ?> work party days and is entitled to <?php echo $wpdisc; ?> discount on winter bookings.
 <h2>Work Party attendance</h2>
 <form action="index.php?option=com_members&view=memberworkparties" method="post" id="adminForm" name="adminForm">
 	
