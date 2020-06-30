@@ -69,6 +69,7 @@ class MembersViewMemberWorkParties extends JViewLegacy
 		JToolBarHelper::title(JText::_('COM_MEMBERS_MANAGER_WORKPARTY'));
 		JToolBarHelper::addNew('memberworkparty.add');
 		JToolBarHelper::editList('memberworkparty.edit');
+		JToolBarHelper::deleteList('','memberworkparty.delete');
 		
 	}
 	

@@ -95,4 +95,10 @@ class MembersModelMemberWorkParty extends JModelAdmin
 		$table->lastModifiedby = $modname;
 	
 	}
+	
+	public function delete($id) {
+	    
+	    return true;
+	    
+	}
 }

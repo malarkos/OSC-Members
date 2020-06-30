@@ -8,7 +8,9 @@
  */
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
- 
+use Joomla\CMS\Uri\Uri;
+use Joomla\Utilities\ArrayHelper;
+
 /**
  * HelloWorld Controller
  *
@@ -18,4 +20,40 @@ defined('_JEXEC') or die('Restricted access');
  */
 class MembersControllerMemberWorkParty extends JControllerForm
 {
+    public function delete()
+    {
+        // Debug message
+        $uri = Uri::getInstance();
+        $url = $uri->toString();
+        
+        //JFactory::getApplication()->enqueueMessage('URL='.$url);
+        $returnurl = $_SERVER['HTTP_REFERER'];
+        //JFactory::getApplication()->enqueueMessage('URL='.$returnurl);
+        // Check for request forgeries.
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        
+        // Get all selected items
+        $ids = $this->input->get('cid', array(), 'array');
+        
+        // Get the model
+        $model = $this->getModel();
+        
+        if(!empty($ids))
+        {
+            
+            $ids = ArrayHelper::toInteger($ids);
+            foreach ($ids as $id) {
+                //JFactory::getApplication()->enqueueMessage('ID to delete is  = '.$id.":");
+                //JFactory::getApplication()->enqueueMessage('In Controller delete()');
+                
+                // Call model delete function
+                $model->delete($id);
+            } // for
+            
+            // Call delete funct
+        } // if
+        
+        // Set the re-direct
+        $this->setRedirect($returnurl);
+    }
 }
