@@ -29,7 +29,7 @@ JHtml::_('formbehavior.chosen', 'select');
    
 
 ?>
-<?php echo $this->membername; ?> has <?php echo $this->workpartytotal; ?> work party days and is entitled to <?php echo $wpdisc; ?> discount on winter bookings.
+<?php echo $this->membername; ?> has <?php echo $this->workpartytotal; ?> work party days and is entitled to <?php echo $wpdisc; ?>% discount on winter bookings.
 <h2>Work Party attendance</h2>
 <form action="index.php?option=com_members&view=memberworkparties" method="post" id="adminForm" name="adminForm">
 	
