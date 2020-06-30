@@ -48,6 +48,39 @@ class MembersModelMemberWorkParties extends JModelList
 		return $query;
 	}
 	
+	// Function to return subs start date for the year
+	
+	public function getWorkPartyTotal()
+	{
+	    
+	    $workpartytotal = 20;  
+	    
+	    /*$db = JFactory::getDbo ();
+	    $query = $db->getQuery ( true );
+	    $query->select ( 'subsstartdate' );
+	    $query->from ( 'oscsubsreferencedates' );
+	    $query->where ( 'subsyear =  ' . $subsyear  );  // Data only in the first row
+	    $db->setQuery ( $query );
+	    $subsstartdate = $db->loadResult();*/
+	    
+	    return ($workpartytotal);
+	}
+	
+	public function getMemberName()
+	{
+	    
+	    $membername = "Harry";
+	    
+	    /*$db = JFactory::getDbo ();
+	     $query = $db->getQuery ( true );
+	     $query->select ( 'subsstartdate' );
+	     $query->from ( 'oscsubsreferencedates' );
+	     $query->where ( 'subsyear =  ' . $subsyear  );  // Data only in the first row
+	     $db->setQuery ( $query );
+	     $subsstartdate = $db->loadResult();*/
+	    
+	    return ($membername);
+	}
 	//override default list
 	protected function populateState($ordering = null, $direction = null)
 	{

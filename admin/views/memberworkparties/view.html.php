@@ -32,6 +32,8 @@ class MembersViewMemberWorkParties extends JViewLegacy
 		//$context = "members.list.admin.members";
 		// Get data from the model
 		$this->items		= $this->get('Items');
+		$this->workpartytotal    = $this->get('WorkPartyTotal');
+		$this->membername = $this->get('MemberName');
 		$this->pagination	= $this->get('Pagination');
 		$this->state		= $this->get('State');
 		
