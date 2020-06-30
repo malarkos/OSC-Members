@@ -13,6 +13,9 @@ JHtml::_('formbehavior.chosen', 'select');
  
 
 ?>
+<h2>Work Party summary</h2>
+Member X has Y work party days and is entitled to Z% discount on winter bookings.
+<h2>Work Party attendance</h2>
 <form action="index.php?option=com_members&view=memberworkparties" method="post" id="adminForm" name="adminForm">
 	
 	<table class="table table-striped table-hover">
