@@ -35,7 +35,7 @@ class JFormFieldWorkParties extends JFormFieldList
 	{
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select('*,concat(name," ,(",year,")") as wpname');
+		$query->select('*,concat(name," (",year,")") as wpname');
 		$query->from('oscworkparty as o');  
         
         
