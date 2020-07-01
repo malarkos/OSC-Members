@@ -58,11 +58,11 @@ class MembersControllerMemberWorkParty extends JControllerForm
     }
     
     public function cancel($key = null, $urlVar = null) {
-        JFactory::getApplication()->enqueueMessage('In Controller cancel()');
+        //JFactory::getApplication()->enqueueMessage('In Controller cancel()');
         $app    = JFactory::getApplication();
         $jinput = $app->input;
         $wpid = $jinput->get('WorkPartyID','','text');
-        JFactory::getApplication()->enqueueMessage('wpid = '.$wpid);
+       //JFactory::getApplication()->enqueueMessage('wpid = '.$wpid);
         $db = JFactory::getDbo();
         $query = $db->getQuery ( true );
         $query->select ( 'MemberID' );
@@ -75,7 +75,7 @@ class MembersControllerMemberWorkParty extends JControllerForm
         
         $this->setRedirect($returnurl);
         
-        JFactory::getApplication()->enqueueMessage('URL='.$returnurl);
+        //JFactory::getApplication()->enqueueMessage('URL='.$returnurl);
         
         $return = parent::cancel($key, $urlVar);
        // $returnurl = 'index.php?option=com_bookingadmin&view=booking&bookingref='.$bookingref;
@@ -85,11 +85,11 @@ class MembersControllerMemberWorkParty extends JControllerForm
     
     }
     public function save() {
-        JFactory::getApplication()->enqueueMessage('In Controller save()');
+       // JFactory::getApplication()->enqueueMessage('In Controller save()');
         $app    = JFactory::getApplication();
         $jinput = $app->input;
         $wpid = $jinput->get('WorkPartyID','','text');
-        JFactory::getApplication()->enqueueMessage('wpid = '.$wpid);
+       // JFactory::getApplication()->enqueueMessage('wpid = '.$wpid);
         $db = JFactory::getDbo();
         $query = $db->getQuery ( true );
         $query->select ( 'MemberID' );
@@ -102,7 +102,7 @@ class MembersControllerMemberWorkParty extends JControllerForm
         
         $this->setRedirect($returnurl);
         
-        JFactory::getApplication()->enqueueMessage('URL='.$returnurl);
+       // JFactory::getApplication()->enqueueMessage('URL='.$returnurl);
         
         $return = parent::save();
         // $returnurl = 'index.php?option=com_bookingadmin&view=booking&bookingref='.$bookingref;
