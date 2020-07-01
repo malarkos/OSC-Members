@@ -64,6 +64,7 @@ class MembersControllerMemberWorkParty extends JControllerForm
         $wpid = $jinput->get('WorkPartyID','','text');
         JFactory::getApplication()->enqueueMessage('wpid = '.$wpid);
         $db = JFactory::getDbo();
+        $query = $db->getQuery ( true );
         $query->select ( 'MemberID' );
         $query->from ( 'workparty' );
         $query->where ( 'WorkPartyID = ' . $wpid );
@@ -82,5 +83,32 @@ class MembersControllerMemberWorkParty extends JControllerForm
         $this->setRedirect($returnurl);
         return $return;
     
+    }
+    public function save() {
+        JFactory::getApplication()->enqueueMessage('In Controller save()');
+        $app    = JFactory::getApplication();
+        $jinput = $app->input;
+        $wpid = $jinput->get('WorkPartyID','','text');
+        JFactory::getApplication()->enqueueMessage('wpid = '.$wpid);
+        $db = JFactory::getDbo();
+        $query = $db->getQuery ( true );
+        $query->select ( 'MemberID' );
+        $query->from ( 'workparty' );
+        $query->where ( 'WorkPartyID = ' . $wpid );
+        $db->setQuery ( $query );
+        
+        $memid = $db->loadResult();
+        $returnurl = 'index.php?option=com_members&view=memberworkparties&memid='.$memid;
+        
+        $this->setRedirect($returnurl);
+        
+        JFactory::getApplication()->enqueueMessage('URL='.$returnurl);
+        
+        $return = parent::save();
+        // $returnurl = 'index.php?option=com_bookingadmin&view=booking&bookingref='.$bookingref;
+        
+        $this->setRedirect($returnurl);
+        return $return;
+        
     }
 }
