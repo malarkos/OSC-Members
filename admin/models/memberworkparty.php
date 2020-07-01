@@ -93,6 +93,11 @@ class MembersModelMemberWorkParty extends JModelAdmin
 		$modname = $user->name;
 	
 		$table->lastModifiedby = $modname;
+		
+		    
+	    $table->oldMemberID = $table->MemberID;
+	    $table->WorkPartyDays = $table->WorkPartyDats;
+		
 	
 	}
 	
