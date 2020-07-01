@@ -86,7 +86,7 @@ class MembersModelMemberWorkParty extends JModelAdmin
 		return $data;
 	}
 	
-	protected function prepareTable(&$table)
+	protected function prepareTable($table)
 	{
 	
 		$user = JFactory::getUser();
@@ -101,7 +101,7 @@ class MembersModelMemberWorkParty extends JModelAdmin
 	
 	}
 	
-	public function delete($id) {
+	public function delete(&$pks) {
 	    
 	    return true;
 	    
