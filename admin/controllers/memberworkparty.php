@@ -57,13 +57,22 @@ class MembersControllerMemberWorkParty extends JControllerForm
         $this->setRedirect($returnurl);
     }
     
-    public function cancel() {
+    public function cancel($key = null, $urlVar = null) {
         JFactory::getApplication()->enqueueMessage('In Controller cancel()');
+        $app    = JFactory::getApplication();
+        $jinput = $app->input;
+        $wpid = $jinput->get('WorkPartyID','','text');
+        JFactory::getApplication()->enqueueMessage('wpid = '.$wpid);
         
-        $returnurl = $_SERVER['HTTP_REFERER'];
         $this->setRedirect($returnurl);
         
         JFactory::getApplication()->enqueueMessage('URL='.$returnurl);
-        return parent::cancel();
+        
+        $return = parent::cancel($key, $urlVar);
+       // $returnurl = 'index.php?option=com_bookingadmin&view=booking&bookingref='.$bookingref;
+        
+        $this->setRedirect($returnurl);
+        return $return;
+    
     }
 }
