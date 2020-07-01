@@ -44,6 +44,8 @@ class JFormFieldWorkParties extends JFormFieldList
         $db->setQuery((string) $query);
 		$messages = $db->loadObjectList();
 		$options  = array();
+		
+		$options[] = JHtml::_('select.option', '0', 'None');
  
 		if ($messages)
 		{
