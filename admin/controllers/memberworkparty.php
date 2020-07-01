@@ -56,4 +56,10 @@ class MembersControllerMemberWorkParty extends JControllerForm
         // Set the re-direct
         $this->setRedirect($returnurl);
     }
+    
+    public function cancel() {
+        JFactory::getApplication()->enqueueMessage('In Controller cancel()');
+        
+        return parent::cancel();
+    }
 }

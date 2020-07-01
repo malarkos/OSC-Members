@@ -76,11 +76,11 @@ class MembersViewMemberWorkParty extends JViewLegacy
  
 		if ($isNew)
 		{
-			$title = JText::_('COM_MEMBERS_MANAGER_MEMBER_NEW');
+			$title = JText::_('COM_MEMBERS_MANAGER_WORKPARTY_NEW');
 		}
 		else
 		{
-			$title = JText::_('COM_MEMBERS_MANAGER_MEMBER_EDIT');
+			$title = JText::_('COM_MEMBERS_MANAGER_WORKPARTY_EDIT');
 		}
  
 		JToolBarHelper::title($title, 'member');
@@ -100,7 +100,7 @@ class MembersViewMemberWorkParty extends JViewLegacy
 	{
 		$isNew = ($this->item->WorkPartyID< 1);
 		$document = JFactory::getDocument();
-		$document->setTitle($isNew ? JText::_('COM_MEMBERS_MEMBER_CREATING') :
-                JText::_('COM_MEMBERS_MEMBER_EDITING'));
+		$document->setTitle($isNew ? JText::_('COM_MEMBERS_MANAGER_WORKPARTY_CREATING') :
+                JText::_('COM_MEMBERS_MANAGER_WORKPARTY_EDITING'));
 	}
 }
