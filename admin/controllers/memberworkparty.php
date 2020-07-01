@@ -63,6 +63,14 @@ class MembersControllerMemberWorkParty extends JControllerForm
         $jinput = $app->input;
         $wpid = $jinput->get('WorkPartyID','','text');
         JFactory::getApplication()->enqueueMessage('wpid = '.$wpid);
+        $db = JFactory::getDbo();
+        $query->select ( 'MemberID' );
+        $query->from ( 'workparty' );
+        $query->where ( 'WorkPartyID = ' . $wpid );
+        $db->setQuery ( $query );
+        
+        $memid = $db->loadResult();
+        $returnurl = 'index.php?option=com_members&view=memberworkparties&memid='.$memid;
         
         $this->setRedirect($returnurl);
         
