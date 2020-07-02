@@ -103,6 +103,8 @@ class MembersModelMemberWorkParty extends JModelAdmin
 	
 	public function delete(&$pks) {
 	    
+	    JFactory::getApplication()->enqueueMessage('In Member Work party delete');
+	    
 	    return true;
 	    
 	}
