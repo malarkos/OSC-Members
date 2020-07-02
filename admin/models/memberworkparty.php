@@ -121,9 +121,10 @@ class MembersModelMemberWorkParty extends JModelAdmin
     	    $result = $db->execute ();
     	    
     	    // Get Work party ID$query = $db->getQuery ( true );
+    	    $query = $db->getQuery ( true );
     	    $query->select ( 'WorkPartyRefID' );
     	    $query->from ( 'workparty' );
-    	    $query->where ( 'WorkPartyID = ' . $wpid );
+    	    $query->where ( 'WorkPartyID = ' . $pks );
     	    $db->setQuery ( $query );
     	    
     	    $wpid = $db->loadResult();
