@@ -103,9 +103,62 @@ class MembersModelMemberWorkParty extends JModelAdmin
 	
 	public function delete(&$pks) {
 	    
-	    JFactory::getApplication()->enqueueMessage('In Member Work party delete');
+	    //JFactory::getApplication()->enqueueMessage('In Member Work party delete with pks'.$pks);
 	    
-	    return true;
+	    // check have a valid entry
+	    if ($pks > 0) {
+	        
+	    // Set MemberID = 0
+    	    $db = JFactory::getDbo();
+    	    $query = $db->getQuery ( true );
+    	    $fields = array('MemberID = 0');
+    	    $conditions = array( 'WorkPartyID = ' . $pks  );
+    	    $query->update('workparty');
+    	    $query->set($fields);
+    	    $query->where($conditions);
+    	    
+    	    $db->setQuery ( $query );
+    	    $result = $db->execute ();
+    	    
+    	    // Get Work party ID$query = $db->getQuery ( true );
+    	    $query->select ( 'WorkPartyRefID' );
+    	    $query->from ( 'workparty' );
+    	    $query->where ( 'WorkPartyID = ' . $wpid );
+    	    $db->setQuery ( $query );
+    	    
+    	    $wpid = $db->loadResult();
+    	    if ($wpid > 0) { // have a valid wpid
+    	        
+    	        // Get number of attendees
+    	        $query = $db->getQuery ( true );
+    	        $query->select ( 'numattendees' );
+    	        $query->from ( 'oscworkparty' );
+    	        $query->where ( 'id = ' . $wpid );
+    	        $db->setQuery ( $query );
+    	        
+    	        $numattendees = $db->loadResult();
+    	        //JFactory::getApplication()->enqueueMessage('Num attendees = '.$numattendees);
+    	        if ($numattendees > 0) {
+    	            $numattendees--;  //Only decrement if greater than zero!
+    	        }
+    	        
+    	        $query = $db->getQuery ( true );
+    	        $fields = array('numattendees = '.$numattendees);
+    	        $conditions = array( 'id = ' . $wpid  );
+    	        $query->update('oscworkparty');
+    	        $query->set($fields);
+    	        $query->where($conditions);
+    	        
+    	        $db->setQuery ( $query );
+    	        $result = $db->execute ();
+    	        
+    	    }
+    	    
+    	    return true;
+	    }
+	    else 
+	        return false;
+	    
 	    
 	}
 }
