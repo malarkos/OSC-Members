@@ -50,6 +50,10 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 			</th>
 			</th>
 				<th width="5%">
+				<?php echo JText::_('COM_MEMBERS_MEMBER_JOOMLA_USER') ;?>
+			</th>
+				</th>
+				<th width="5%">
 				<?php echo JText::_('COM_MEMBERS_FAMILY') ;?>
 			</th>
 			</th>
@@ -140,6 +144,9 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 						</td>                                               
 						<td>
 								<?php echo $row->MemberType; ?>
+						</td>
+						<td>
+								<?php echo $row->joomlauserid; ?>
 						</td>
 						<td>
 								
