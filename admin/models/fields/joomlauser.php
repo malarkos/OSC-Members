@@ -37,7 +37,7 @@ class JFormFieldJoomlaUser extends JFormFieldList
 		$query = $db->getQuery(true);
 		//  query="SELECT u.id , u.name FROM #__users as u "
 		$query->select('u.id , u.name');
-		$query->from('josv2_users as u');  
+		$query->from('#__users as u');  
         
         $db->setQuery((string) $query);
 		$messages = $db->loadObjectList();

@@ -146,7 +146,7 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 								<?php echo $row->MemberType; ?>
 						</td>
 						<td>
-								<?php echo $row->joomlauserid; ?>
+								<?php echo $row->joomlauser;?>
 						</td>
 						<td>
 								

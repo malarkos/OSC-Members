@@ -52,10 +52,11 @@ class MembersModelMembers extends JModelList
 		
 	
 		// Create the base select statement.
-		$query->select('m.*, count(LockerNumber) as lockercount,count(FamilyMemberID) as familycount');
+		$query->select('m.*, count(LockerNumber) as lockercount,count(FamilyMemberID) as familycount,u.name as joomlauser');
         $query->from('members as m');
         $query->leftJoin('lockers as l on m.MemberID = l.MemberID');
         $query->leftJoin('familymembers as f on m.MemberID = f.MemberID');
+        $query->leftJoin('#__users as u on m.joomlauserid = u.id');
         $query->group('m.MemberID');
         /*$query->where ('MemberType = \'Graduate\' ');
         $query->leftJoin('workparty AS w ON m.MemberID = w.MemberId');
