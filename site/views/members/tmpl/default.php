@@ -34,7 +34,8 @@ use Joomla\CMS\Router\Route;
 			<td>Address:</td>
 			<td><?php echo $this->data->MemberHomeAddress; ?>, <?php echo $this->data->MemberHomeAddress2; ?><br />
 			<?php echo $this->data->MemberHomeSuburb; ?><br />
-			<?php echo $this->data->MemberHomeState; ?> <?php echo $this->data->MemberHomePostcode; ?>
+			<?php echo $this->data->MemberHomeState; ?> <?php echo $this->data->MemberHomePostcode; ?><br />
+			<?php echo $this->data->MemberHomeCountry; ?>
 			 </td>
 		</tr>
 		<tr>
