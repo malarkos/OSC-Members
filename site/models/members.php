@@ -49,18 +49,20 @@ class MembersModelMembers extends JModelForm
 		
 		// returns information from oscmembers database to the view.
 
+	      // update to use Joomla id
 		// Get logged in user info
 		$user = JFactory::getUser();
-		$userName = $user->name;		
+		$userName = $user->name;	
 		$useremail = $user->email;
+		$userjoomlaid = $user->id;
 		
 		
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		
 		$query->select('*');
-		$query->from('oscmembers');
-		$query->where('memberemail = '.$db->quote($useremail));
+		$query->from('members');
+		$query->where('joomlauserid = '.$db->quote($userjoomlaid));
 		
 		$db->setQuery($query);
 		
@@ -126,7 +128,7 @@ class MembersModelMembers extends JModelForm
 	public function save($data)
 	{
 	    
-	    JFactory::getApplication()->enqueueMessage('In model save:');
+	    //JFactory::getApplication()->enqueueMessage('In model save:');
 	    
 		// get the table
 		$table = $this->getTable('Members');
@@ -136,42 +138,7 @@ class MembersModelMembers extends JModelForm
 			return false;
 		}
 		
-		// need to update email and login id if email address has changed
 		
-		//if (!$this->store()) {
-		//	return false;
-		//}
-		
-		/* $db = $this->getDbo();
-		$query = $db->getQuery(true);
-		
-		$memid = 351;
-		//$firstname = $data->MemberFirstname;
-		$firstname = $data['MemberFirstname'];
-		//$firstname='Geoffrey';
-		
-		//$query->update($db->quoteName('oscmembers'))
-		//->set($db->quoteName('MemberFirstname') . ' = ' . $db->quoteName($firstname))
-		//->where($db->quoteName('id') . ' = ' . $db->quoteName($memid));
-		//->where('id = ' . $memid);
-		
-		// Create the base update statement.
-		$query->update('oscmembers')->set('MemberFirstname = ' . $firstname)->where('id = ' . $memid);
-		
-		// Set the query and execute the update.
-		$db->setQuery($query);
-		
-		try
-		{
-			$db->execute();
-		}
-		catch (RuntimeException $e)
-		{
-			JError::raiseWarning(500, $e->getMessage());
-		
-			return false;
-		}
-		*/
 		return true;
 		
 	} // save 

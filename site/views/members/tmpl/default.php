@@ -9,6 +9,9 @@
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Router\Route;
+
 ?>
 <h3>Member details</h3>
 <A href="<?php echo JRoute::_('index.php?option=com_members&view=members&layout=edit'); ?>">Update details</A>
@@ -24,7 +27,8 @@ defined('_JEXEC') or die('Restricted access');
 		</tr>
 		<tr>
 			<td>Email:</td>
-			<td><?php echo $this->data->MemberEmail; ?> </td>
+			<td><?php echo $this->data->useremail; ?> (Edit in 
+			<A href="<?php $url = Uri::root() . 'index.php/your-profile'; echo $url; ?>">Your Profile</A>)</td>
 		</tr>
 		<tr>
 			<td>Address:</td>
