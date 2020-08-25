@@ -51,7 +51,7 @@ use Joomla\CMS\Router\Route;
 		</tr>
 		<tr>
 			<td >Date of Birth:</td>
-			<td ><?php echo $this->data->MemberBirthDate; ?> </td>
+			<td ><?php echo $this->data->memberdob; ?> </td>
 		</tr>
 	</tbody>
 </table>

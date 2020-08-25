@@ -60,7 +60,7 @@ class MembersModelMembers extends JModelForm
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		
-		$query->select('*');
+		$query->select('*,date_format(MemberBirthDate,\'%d/%m/%Y\') as memberdob');
 		$query->from('members');
 		$query->where('joomlauserid = '.$db->quote($userjoomlaid));
 		
