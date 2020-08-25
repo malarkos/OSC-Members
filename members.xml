@@ -10,7 +10,7 @@
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
 	<!--  The version string is recorded in the components table -->
-	<version>1.12.693</version>
+	<version>1.12.696</version>
 	<!-- The description is optional and defaults to the name -->
 	<description>COM_MEMBERS_DESCRIPTION</description>
  
@@ -50,6 +50,7 @@
 	</files>
      <languages folder="site/language">
       		<language tag="en-GB">en-GB/en-GB.com_members.ini</language>
+      		<language tag="en-GB">en-GB/en-GB.com_members.sys.ini</language>
   	</languages>
 	<administration>
 		<!-- Administration Menu Section -->
