@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
 */
-class MembersViewFamilyMembers extends JViewLegacy
+class MembersViewFinances extends JViewLegacy
 {
 	
 	protected $data;
@@ -39,7 +39,7 @@ class MembersViewFamilyMembers extends JViewLegacy
 		// Assign data to the view
 		
 		$this->data	            = $this->get('Data');
-		$this->form	            = $this->get('Form');
+		//$this->form	            = $this->get('Form');
 		$this->state            = $this->get('State');
 		//$this->assignRef( 'data', $data);  // assign to variable
 		//$this->userName = $data->username;
@@ -66,22 +66,5 @@ class MembersViewFamilyMembers extends JViewLegacy
 		parent::display($tpl);
 	}
 	
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
-	protected function addToolBar()
-	{
-		$input = JFactory::getApplication()->input;
- 
-		// Add whatever buttons you require
-		JToolBarHelper::save('members.save');
-		JToolBarHelper::divider();
-		JToolBarHelper::cancel('members.cancel');
-		
-		
-	}
+
 }

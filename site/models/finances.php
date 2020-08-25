@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
 */
-class MembersModelFamilyMembers extends JModelForm
+class MembersModelFinances extends JModelForm
 {
 	/**
 	 * @var string message
@@ -33,7 +33,7 @@ class MembersModelFamilyMembers extends JModelForm
 	 *
 	 * @since   1.6
 	 */
-	public function getTable($type = 'FamilyMembers', $prefix = 'MembersTable', $config = array())
+	public function getTable($type = 'Finances', $prefix = 'MembersTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -75,8 +75,9 @@ class MembersModelFamilyMembers extends JModelForm
 		// get family members
 		$query = $db->getQuery(true);
 		$query->select('*');
-		$query->from('familymembers');
+		$query->from('finances');
 		$query->where('MemberID = '.$db->quote($memberid));
+		$query->order('TransactionDate');
 		
 		//$app->enqueueMessage('Query = '. $query . ':');
 		$db->setQuery ( $query );
@@ -107,7 +108,7 @@ class MembersModelFamilyMembers extends JModelForm
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_members.members', 'members', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_members.members', 'finances', array('control' => 'jform', 'load_data' => $loadData));
 	
 		if (empty($form))
 		{
@@ -129,7 +130,7 @@ class MembersModelFamilyMembers extends JModelForm
 	{
 		$data = $this->getData();
 	
-		$this->preprocessData('com_members.members', $data);
+		$this->preprocessData('com_members.finances', $data);
 	
 		return $data;
 	} // loadFormData
@@ -149,7 +150,7 @@ class MembersModelFamilyMembers extends JModelForm
 	    //JFactory::getApplication()->enqueueMessage('In model save:');
 	    
 		// get the table
-		$table = $this->getTable('Members');
+		$table = $this->getTable('Finances');
 		
 		// save the data
 		if (!$table->save( $data )) {
