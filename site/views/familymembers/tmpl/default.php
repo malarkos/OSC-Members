@@ -16,29 +16,28 @@ use Joomla\CMS\Router\Route;
 <h3>Member details</h3>
 
 <?php if (!empty($this->data)) : ?>
-				<?php foreach ($this->data as $i => $row) :
-				?>
-				<A href="<?php echo JRoute::_('index.php?option=com_members&view=familymembers&layout=edit'); ?>">Update details</A>
-            <table class="table table-striped table-hover">
-            	<tbody>
-            		<tr>
-            			<td>Family Member:</td>
-            			<td><?php echo $row->FamilyMemberFirstname; ?> <?php echo $row->FamilyMemberSurname; ?></td>
-            		</tr>
-            		<tr>
-            			<td>Family Member Type:</td>
-            			<td><?php echo $row->FamilyMembershipType; ?> </td>
-            		</tr>
-            		
-            		<tr>
-            			<td >Date of Birth:</td>
-            			<td ><?php echo $row->FamilyMemberBirthDate; ?> </td>
-            		</tr>
-            	</tbody>
-            </table>
 
-		<?php endforeach; ?>
+<table class="table table-striped table-hover">
+	<thead>
+		<th>Family Member</th>
+		<th>Type</th>
+		<th>DoB</th>
+	</thead>
+	<tbody>
+				<?php foreach ($this->data as $i => $row) : ?>
+            		<tr>
+						<td><?php echo $row->FamilyMemberFirstname; ?> <?php echo $row->FamilyMemberSurname; ?></td>
+						<td><?php echo $row->FamilyMembershipType; ?> </td>
+						<td><?php echo $row->FamilyMemberBirthDate; ?> </td>
+					</tr>
+          
+				<?php endforeach; ?>
+	</tbody>
+</table>
+
 <?php else: ?>
 No family members.
 <?php endif; ?>
+
+Please contact the Membership Officer if you need to add, change or remove family or buddy members.
  		

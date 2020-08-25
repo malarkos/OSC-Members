@@ -71,23 +71,24 @@ class MembersModelFamilyMembers extends JModelForm
 		$db->execute ();
 		$memberid = $db->loadResult ();
 		$app = JFactory::getApplication ();
-		$app->enqueueMessage('Memberid = '. $memberid . ':');
+		//$app->enqueueMessage('Memberid = '. $memberid . ':');
 		// get family members
 		$query = $db->getQuery(true);
 		$query->select('*');
 		$query->from('familymembers');
 		$query->where('MemberID = '.$db->quote($memberid));
 		
-		$app->enqueueMessage('Query = '. $query . ':');
+		//$app->enqueueMessage('Query = '. $query . ':');
 		$db->setQuery ( $query );
 		$db->execute ();
+		$num_rows = $db->getNumRows();
 		
 		try  // ensure in a try block for any errors.
 		{
 			//$row = $db->loadAssoc();
 			$row = $db->loadObjectList();
-			$num_rows = $db->getNumRows ();
-			$app->enqueueMessage('Num rows = '. $num_rows . ':');
+			
+			//$app->enqueueMessage('Num rows = '. $num_rows . ':');
 		}
 		catch (RuntimeException $e)
 		{
