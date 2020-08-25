@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
 */
-class MembersViewMembers extends JViewLegacy
+class MembersViewFamilyMembers extends JViewLegacy
 {
 	
 	protected $data;

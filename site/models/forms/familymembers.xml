@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form name="member">
+<form name="familymember">
 	<fieldset name="member" label="Update Member Details">
  
         <field
-            name="MemberID"
+            name="FamilyMemberID"
             type="hidden"
            
             />
        
        <field
-            name="MemberFirstname"
+            name="FamilyMemberFirstname"
             type="text"
 	        description="First name"
 	        label="First name"
@@ -18,93 +18,35 @@
 	        size="50" />
 	        
 	        <field
-            name="MemberSurname"
+            name="FamilyMemberSurname"
             type="text"
 	        description="Surname"
 	        label="Surname"
 	        class="inputbox"
 			default=""
-	        size="50" />      
+	        size="50" />   
+	        
+	        <field
+				name="FamilyMembershipType"
+				type="list"
+				label="COM_MEMBERS_FAMILYMEMBER_TYPE_LABEL"
+				description="COM_MEMBERS_FAMILYMEMBER_TYPE_DESC"
+				class="inputbox"
+				
+				>
+			<option value="Buddy">Buddy</option>
+			<option value="Spouse">Spouse</option>
+			<option value="Child">Child</option>
+			<option value="Resigned">Resigned</option>
+			<option value="To Member">To Member</option>
+			<option value="Terminated">Terminated</option>
+			
+		</field>     
  
 	
-	<field
-            name="MemberHomeAddress"
-            type="text"
-	        description="Street Address"
-	        label="Street Address"
-	        class="inputbox"
-			default=""
-	        size="50" />
-	 <field
-            name="MemberHomeAddress2"
-            type="text"
-	        description="Street Address"
-	        label="Street Address (cont)"
-	        class="inputbox"
-			default=""
-	        size="50" />
-	 <field
-            name="MemberHomeSuburb"
-            type="text"
-	        description="Suburb"
-	        label="Suburb"
-	        class="inputbox"
-			default=""
-	        size="50" />
-	  <field
-            name="MemberHomeState"
-            type="text"
-	        description="State"
-	        label="State"
-	        class="inputbox"
-			default=""
-	        size="50" />
-	  <field
-            name="MemberHomePostcode"
-            type="text"
-	        description="Postcode"
-	        label="Postcode"
-	        class="inputbox"
-			default=""
-	        size="50" />
-	
-	 <field
-            name="MemberHomeCountry"
-            type="text"
-	        description="Country"
-	        label="Country"
-	        class="inputbox"
-			default=""
-	        size="50" />
-	
 	
 	<field
-            name="MemberPhoneHome"
-            type="text"
-	        description="Home Phone"
-	        label="Home Phone"
-	        class="inputbox"
-			default=""
-	        size="50" />
-   <field
-            name="MemberPhoneMobile"
-            type="text"
-	        description="Mobile Phone"
-	        label="Mobile Phone"
-	        class="inputbox"
-			default=""
-	        size="50" />
-	        
-   <field
-            name="MemberPhoneWork"
-            type="text"
-	        description="Work Phone"
-	        label="Work Phone"
-	        class="inputbox"
-			default=""
-	        size="50" />
-	<field
-			name="MemberBirthDate"
+			name="FamilyMemberBirthDate"
 			type="calendar"
 			
 			label="Date of Birth"
@@ -114,5 +56,14 @@
 			size="22"
 			filter="user_utc"
 		/>
+		<field name="CurrentSubsPaid"
+		       type="list"
+		       default="No"
+		       label="COM_MEMBERS_FAMILYMEMBER_SUBSPAID_LABEL"
+			description="COM_MEMBERS_FAMILYMEMBER_SUBSPAID_DESC">
+		       
+			<option value="No">No</option>
+			<option value="Yes">Yes</option>
+		 </field>
 	</fieldset>
 </form>

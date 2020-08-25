@@ -16,7 +16,7 @@ require_once JPATH_COMPONENT . '/controller.php';
  *
  * @since  1.6
  */
-class MembersControllerMembers extends MembersController 
+class MembersControllerFamilyMembers extends MembersController 
 {
 	/**
 	 * Method to check out a user for editing and redirect to the edit form.
@@ -33,10 +33,10 @@ class MembersControllerMembers extends MembersController
 		$loginUserId = (int) $user->get('id');
 		
 		// Get the model.
-		$model = $this->getModel('Members', 'MembersModel');
+		$model = $this->getModel('FamilyMembers', 'MembersModel');
 		
 		// Redirect to the edit screen.
-		$this->setRedirect(JRoute::_('index.php?option=com_members&view=members&layout=edit', false));
+		$this->setRedirect(JRoute::_('index.php?option=com_members&view=familymembers&layout=edit', false));
 		
 		return true;
 	 } // edit
@@ -57,7 +57,7 @@ class MembersControllerMembers extends MembersController
 	 	JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 	 
 	 	$app    = JFactory::getApplication();
-	 	$model = $this->getModel('Members', 'MembersModel');
+	 	$model = $this->getModel('FamilyMembers', 'MembersModel');
 	 	
 	 	// Get the user data.
 	 	$data = $app->input->post->get('jform', array(), 'array');
@@ -113,20 +113,20 @@ class MembersControllerMembers extends MembersController
 	 	if ($return === false)
 	 	{
 	 		// Save the data in the session.
-	 		$app->setUserState('com_members.edit.members.data', $data);
+	 		$app->setUserState('com_members.edit.familymembers.data', $data);
 	 	
 	 		// Redirect back to the edit screen.
 	 		$this->setMessage(JText::sprintf('COM_MEMBERS_MEMBERS_SAVE_FAILED', $model->getError()), 'warning');
-	 		$this->setRedirect(JRoute::_('index.php?option=com_members&view=members&layout=edit', false));
+	 		$this->setRedirect(JRoute::_('index.php?option=com_members&view=familymembers&layout=edit', false));
 	 	
 	 		return false;
 	 	}
 	 	
 	 	// Flush the data from the session.
-	 	$app->setUserState('com_members.edit.members.data', null);
+	 	$app->setUserState('com_members.edit.familymembers.data', null);
 	 	
 	 	// Set return path
-	 	$this->setRedirect(JRoute::_('index.php?option=com_members&view=members', false));
+	 	$this->setRedirect(JRoute::_('index.php?option=com_members&view=familymembers', false));
 	 	
 	 } // save
 } // class

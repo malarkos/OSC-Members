@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
 */
-class MembersModelMembers extends JModelForm
+class MembersModelFamilyMembers extends JModelForm
 {
 	/**
 	 * @var string message
@@ -33,7 +33,7 @@ class MembersModelMembers extends JModelForm
 	 *
 	 * @since   1.6
 	 */
-	public function getTable($type = 'Members', $prefix = 'MembersTable', $config = array())
+	public function getTable($type = 'FamilyMembers', $prefix = 'MembersTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -51,25 +51,43 @@ class MembersModelMembers extends JModelForm
 
 	      // update to use Joomla id
 		// Get logged in user info
+		
+	    // TODO - update
+	    $db    = JFactory::getDBO();
+	    $query = $db->getQuery(true);
+	    
 		$user = JFactory::getUser();
-		$userName = $user->name;	
-		$useremail = $user->email;
+	
+	    // Get joomlaid
 		$userjoomlaid = $user->id;
 		
-		
-		$db    = JFactory::getDBO();
-		$query = $db->getQuery(true);
-		
-		$query->select('*,date_format(MemberBirthDate,\'%d/%m/%Y\') as memberdob');
+		// get memberid
+		$query->select('MemberID');
 		$query->from('members');
 		$query->where('joomlauserid = '.$db->quote($userjoomlaid));
 		
 		$db->setQuery($query);
 		
+		$db->execute ();
+		$memberid = $db->loadResult ();
+		$app = JFactory::getApplication ();
+		$app->enqueueMessage('Memberid = '. $memberid . ':');
+		// get family members
+		$query = $db->getQuery(true);
+		$query->select('*');
+		$query->from('familymembers');
+		$query->where('MemberID = '.$db->quote($memberid));
+		
+		$app->enqueueMessage('Query = '. $query . ':');
+		$db->setQuery ( $query );
+		$db->execute ();
+		
 		try  // ensure in a try block for any errors.
 		{
 			//$row = $db->loadAssoc();
-			$row = $db->loadObject();
+			$row = $db->loadObjectList();
+			$num_rows = $db->getNumRows ();
+			$app->enqueueMessage('Num rows = '. $num_rows . ':');
 		}
 		catch (RuntimeException $e)
 		{
@@ -80,8 +98,7 @@ class MembersModelMembers extends JModelForm
 		
 		
 		$this->data = $row; // assign data to return object
-		$this->data->username = $userName; // save username and email
-		$this->data->useremail = $useremail;
+		
 		
 		return $this->data;
 	} // getData

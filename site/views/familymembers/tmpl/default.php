@@ -14,46 +14,31 @@ use Joomla\CMS\Router\Route;
 
 ?>
 <h3>Member details</h3>
-<A href="<?php echo JRoute::_('index.php?option=com_members&view=members&layout=edit'); ?>">Update details</A>
-<table class="table table-striped table-hover">
-	<tbody>
-		<tr>
-			<td>Member:</td>
-			<td><?php echo $this->data->MemberFirstname; ?> <?php echo $this->data->MemberSurname; ?></td>
-		</tr>
-		<tr>
-			<td>Member Type:</td>
-			<td><?php echo $this->data->MemberType; ?> </td>
-		</tr>
-		<tr>
-			<td>Email:</td>
-			<td><?php echo $this->data->useremail; ?> (Edit in 
-			<A href="<?php $url = Uri::root() . 'index.php/your-profile'; echo $url; ?>">Your Profile</A>)</td>
-		</tr>
-		<tr>
-			<td>Address:</td>
-			<td><?php echo $this->data->MemberHomeAddress; ?>, <?php echo $this->data->MemberHomeAddress2; ?><br />
-			<?php echo $this->data->MemberHomeSuburb; ?><br />
-			<?php echo $this->data->MemberHomeState; ?> <?php echo $this->data->MemberHomePostcode; ?><br />
-			<?php echo $this->data->MemberHomeCountry; ?>
-			 </td>
-		</tr>
-		<tr>
-			<td >Mobile:</td>
-			<td ><?php echo $this->data->MemberPhoneMobile; ?> </td>
-		</tr>
-		<tr>
-			<td >Home:</td>
-			<td ><?php echo $this->data->MemberPhoneHome; ?> </td>
-		</tr>
-		<tr>
-			<td >Work:</td>
-			<td ><?php echo $this->data->MemberPhoneWork; ?> </td>
-		</tr>
-		<tr>
-			<td >Date of Birth:</td>
-			<td ><?php echo $this->data->memberdob; ?> </td>
-		</tr>
-	</tbody>
-</table>
+
+<?php if (!empty($this->data)) : ?>
+				<?php foreach ($this->data as $i => $row) :
+				?>
+				<A href="<?php echo JRoute::_('index.php?option=com_members&view=familymembers&layout=edit'); ?>">Update details</A>
+            <table class="table table-striped table-hover">
+            	<tbody>
+            		<tr>
+            			<td>Family Member:</td>
+            			<td><?php echo $row->FamilyMemberFirstname; ?> <?php echo $row->FamilyMemberSurname; ?></td>
+            		</tr>
+            		<tr>
+            			<td>Family Member Type:</td>
+            			<td><?php echo $row->FamilyMembershipType; ?> </td>
+            		</tr>
+            		
+            		<tr>
+            			<td >Date of Birth:</td>
+            			<td ><?php echo $row->FamilyMemberBirthDate; ?> </td>
+            		</tr>
+            	</tbody>
+            </table>
+
+		<?php endforeach; ?>
+<?php else: ?>
+No family members.
+<?php endif; ?>
  		
