@@ -21,6 +21,7 @@ $link = JRoute::_($financeeditURL);
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
+			
 				<th>Description</th>
 				<th>Amount</th>
 				<th>Paid</th>
@@ -33,6 +34,7 @@ $link = JRoute::_($financeeditURL);
 			<?php $memlink = JRoute::_('index.php?option=com_members&view=member&layout=edit&MemberID=' . $this->items[0]->MemberID);
 			$payonesublink = JRoute::_('index.php?option=com_members&task=membersubspayment.payonesub&memtype=m&MemberID='.$this->items[0]->MemberID.'&ID=' . $this->items[0]->MemberID);
 				?>
+				
 				<td>Member Sub for <A href="<?php echo $memlink; ?>"><?php echo $this->items[0]->MemberFirstname." ".$this->items[0]->MemberSurname;?></A></td>
 				<td>$<?php echo $this->membersubs; $totalowing += $this->membersubs; ?></td>
 				<td><?php echo $this->items[0]->CurrentSubsPaid; ?></td>
@@ -46,6 +48,7 @@ $link = JRoute::_($financeeditURL);
 				$payonesublink = JRoute::_('index.php?option=com_members&task=membersubspayment.payonesub&memtype=f&MemberID='.$this->items[0]->MemberID.'&ID=' . $row->FamilyMemberID); // TO DO work out if spouse, child or buddy
 				?>
 				<tr>
+					
 					<td>
 						<?php echo $row->FamilyMembershipType;?> membership for <a href="<?php echo $fammemlink; ?>" > <?php echo $row->FamilyMemberFirstname; echo " "; echo $row->FamilyMemberSurname;?></a>
 					</td>
