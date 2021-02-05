@@ -22,6 +22,9 @@ use Joomla\CMS\Router\Route;
 		<th>Family Member</th>
 		<th>Type</th>
 		<th>DoB</th>
+		<th>Join date</th>
+		<th>Leave date</th>
+		<th>Subs Paid</th>
 	</thead>
 	<tbody>
 				<?php foreach ($this->data as $i => $row) : ?>
@@ -29,6 +32,9 @@ use Joomla\CMS\Router\Route;
 						<td><?php echo $row->FamilyMemberFirstname; ?> <?php echo $row->FamilyMemberSurname; ?></td>
 						<td><?php echo $row->FamilyMembershipType; ?> </td>
 						<td><?php echo $row->FamilyMemberBirthDate; ?> </td>
+						<td><?php echo $row->FamilyMemberJoinDate; ?> </td>
+						<td><?php echo $row->FamilyMemberDepartureDate; ?> </td>
+						<td><?php echo $row->CurrentSubsPaid; ?> </td>
 					</tr>
           
 				<?php endforeach; ?>
