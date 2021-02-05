@@ -33,8 +33,9 @@ You are entitled to a <?php echo $wpdisc."%";?> discount on your Winter lodge bo
 
 <table class="table table-striped table-hover">
 	<thead>
-		<th>Date</th>
-		<th>Days</th>
+		<th>Work Party Date</th>
+		<th>Work Party Days</th>
+		<th>Total WP Days</th>
 		<th>Comment</th>
 		
 	</thead>
@@ -43,7 +44,8 @@ You are entitled to a <?php echo $wpdisc."%";?> discount on your Winter lodge bo
 				<?php foreach ($this->data as $i => $row) : ?>
             		<tr>
 						<td><?php echo $row->WorkPartyDate; ?> </td>
-						<td><?php echo $row->WorkPartyDats; ?> </td>
+						<td><?php echo $row->WorkPartyDats; $total += $row->WorkPartyDats; ?> </td>
+						<td><?php echo $total; ?> </td>
 						<td><?php echo $row->Comments; ?> </td>
 						
 					</tr>
