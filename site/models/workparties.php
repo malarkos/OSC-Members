@@ -108,7 +108,43 @@ class MembersModelWorkParties extends JModelForm
 	} // getData
 	
 	
-	
+	public function getTotalWorkParties ()
+	{
+	    $totalwp = "";
+	    
+	    // TODO - update
+	    $db    = JFactory::getDBO();
+	    $query = $db->getQuery(true);
+	    
+	    $user = JFactory::getUser();
+	    
+	    // Get joomlaid
+	    $userjoomlaid = $user->id;
+	    
+	    // get memberid
+	    $query->select('MemberID');
+	    $query->from('members');
+	    $query->where('joomlauserid = '.$db->quote($userjoomlaid));
+	    
+	    $db->setQuery($query);
+	    
+	    $db->execute ();
+	    $memberid = $db->loadResult ();
+	    $app = JFactory::getApplication ();
+	    
+	    $query = $db->getQuery(true);
+	    $query->select('sum(WorkPartyDats) as totalwp');
+	    $query->from('workparty');
+	    $query->where('MemberID = '.$db->quote($memberid));
+	    
+	    
+	    //$app->enqueueMessage('Query = '. $query . ':');
+	    $db->setQuery ( $query );
+	    $db->execute ();
+	    $totalwp = $db->loadResult ();
+	    
+	    return $totalwp;
+	}//
 	
 	public function getForm($data = array(), $loadData = true)
 	{

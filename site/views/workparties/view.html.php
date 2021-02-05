@@ -39,6 +39,7 @@ class MembersViewWorkParties extends JViewLegacy
 		// Assign data to the view
 		
 		$this->data	            = $this->get('Data');
+		$this->totalworkparties = $this->get('TotalWorkParties');
 		
 		//$this->form	            = $this->get('Form');
 		$this->state            = $this->get('State');
