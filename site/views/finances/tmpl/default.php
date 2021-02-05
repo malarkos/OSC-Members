@@ -17,7 +17,9 @@ use Joomla\CMS\Router\Route;
 
 <?php if (!empty($this->data)) : ?>
 
-<h4>Current Balance</h4>
+Current Balance = <?php if (!empty($this->currentbalance)) : ?>  
+<?php echo "$".$this->currentbalance;?>
+<?php endif; ?>
 
 <table class="table table-striped table-hover">
 	<thead>

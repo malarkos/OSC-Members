@@ -105,6 +105,45 @@ class MembersModelFinances extends JModelForm
 		return $this->data;
 	} // getData
 	
+	
+	public function getCurrentBalance ()
+	{
+	    $balance = "";
+	    
+	    // TODO - update
+	    $db    = JFactory::getDBO();
+	    $query = $db->getQuery(true);
+	    
+	    $user = JFactory::getUser();
+	    
+	    // Get joomlaid
+	    $userjoomlaid = $user->id;
+	    
+	    // get memberid
+	    $query->select('MemberID');
+	    $query->from('members');
+	    $query->where('joomlauserid = '.$db->quote($userjoomlaid));
+	    
+	    $db->setQuery($query);
+	    
+	    $db->execute ();
+	    $memberid = $db->loadResult ();
+	    $app = JFactory::getApplication ();
+	    
+	    $query = $db->getQuery(true);
+	    $query->select('sum(Amount) as currentbalance');
+	    $query->from('finances');
+	    $query->where('MemberID = '.$db->quote($memberid));
+	    $query->order('TransactionDate');
+	    
+	    //$app->enqueueMessage('Query = '. $query . ':');
+	    $db->setQuery ( $query );
+	    $db->execute ();
+	    $currentbalance = $db->loadResult ();
+	    
+	    return $currentbalance;
+	}//
+	
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
