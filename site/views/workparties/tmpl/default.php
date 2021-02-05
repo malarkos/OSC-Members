@@ -18,7 +18,7 @@ use Joomla\CMS\Router\Route;
 <?php if (!empty($this->data)) : ?>
 
  <?php if (!empty($this->totalworkparties)) : ?>  Total Work Parties =
-<?php echo "$".$this->totalworkparties;?>
+<?php echo $this->totalworkparties;?>
 <?php endif; ?>
 
 <table class="table table-striped table-hover">
