@@ -28,7 +28,7 @@ use Joomla\CMS\Router\Route;
 		<tr>
 			<td>Email:</td>
 			<td><?php echo $this->data->useremail; ?> (Edit in 
-			<A href="<?php $url = Uri::root() . 'index.php/your-profile'; echo $url; ?>">Your Profile</A>)</td>
+			<A href="<?php $url = Uri::root() . 'index.php/component/users/profile'; echo $url; ?>">Your Profile</A>)</td>
 		</tr>
 		<tr>
 			<td>Address:</td>
