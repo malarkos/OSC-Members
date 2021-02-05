@@ -13,7 +13,7 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Route;
 
 ?>
-<h3>Member details</h3>
+<h3>Family Member details</h3>
 
 <?php if (!empty($this->data)) : ?>
 
