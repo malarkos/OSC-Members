@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
 */
-class MembersModelFinances extends JModelForm
+class MembersModelWorkParties extends JModelForm
 {
 	/**
 	 * @var string message
@@ -33,7 +33,7 @@ class MembersModelFinances extends JModelForm
 	 *
 	 * @since   1.6
 	 */
-	public function getTable($type = 'Finances', $prefix = 'MembersTable', $config = array())
+	public function getTable($type = 'WorkParties', $prefix = 'MembersTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -70,14 +70,16 @@ class MembersModelFinances extends JModelForm
 		
 		$db->execute ();
 		$memberid = $db->loadResult ();
+		
+		// TODO code if memberid is invalid
 		$app = JFactory::getApplication ();
 		//$app->enqueueMessage('Memberid = '. $memberid . ':');
 		// get family members
 		$query = $db->getQuery(true);
 		$query->select('*');
-		$query->from('finances');
+		$query->from('workparty');
 		$query->where('MemberID = '.$db->quote($memberid));
-		$query->order('TransactionDate');
+		
 		
 		//$app->enqueueMessage('Query = '. $query . ':');
 		$db->setQuery ( $query );
@@ -106,48 +108,12 @@ class MembersModelFinances extends JModelForm
 	} // getData
 	
 	
-	public function getCurrentBalance ()
-	{
-	    $balance = "";
-	    
-	    // TODO - update
-	    $db    = JFactory::getDBO();
-	    $query = $db->getQuery(true);
-	    
-	    $user = JFactory::getUser();
-	    
-	    // Get joomlaid
-	    $userjoomlaid = $user->id;
-	    
-	    // get memberid
-	    $query->select('MemberID');
-	    $query->from('members');
-	    $query->where('joomlauserid = '.$db->quote($userjoomlaid));
-	    
-	    $db->setQuery($query);
-	    
-	    $db->execute ();
-	    $memberid = $db->loadResult ();
-	    $app = JFactory::getApplication ();
-	    
-	    $query = $db->getQuery(true);
-	    $query->select('sum(Amount) as currentbalance');
-	    $query->from('finances');
-	    $query->where('MemberID = '.$db->quote($memberid));
-	    $query->order('TransactionDate');
-	    
-	    //$app->enqueueMessage('Query = '. $query . ':');
-	    $db->setQuery ( $query );
-	    $db->execute ();
-	    $currentbalance = $db->loadResult ();
-	    
-	    return $currentbalance;
-	}//
+	
 	
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.
-		$form = $this->loadForm('com_members.members', 'finances', array('control' => 'jform', 'load_data' => $loadData));
+		$form = $this->loadForm('com_members.members', 'workparties', array('control' => 'jform', 'load_data' => $loadData));
 	
 		if (empty($form))
 		{
@@ -169,7 +135,7 @@ class MembersModelFinances extends JModelForm
 	{
 		$data = $this->getData();
 	
-		$this->preprocessData('com_members.finances', $data);
+		$this->preprocessData('com_members.workparties', $data);
 	
 		return $data;
 	} // loadFormData
@@ -189,7 +155,7 @@ class MembersModelFinances extends JModelForm
 	    //JFactory::getApplication()->enqueueMessage('In model save:');
 	    
 		// get the table
-		$table = $this->getTable('Finances');
+		$table = $this->getTable('WorkParties');
 		
 		// save the data
 		if (!$table->save( $data )) {

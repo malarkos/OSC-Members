@@ -14,7 +14,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
 */
-class MembersTableFinances extends JTable
+class MembersTableWorkParties extends JTable
 {
 	/**
 	 * Constructor
@@ -23,6 +23,6 @@ class MembersTableFinances extends JTable
 	 */
 	function __construct(&$db)
 	{
-		parent::__construct('finances', 'FinanceID', $db);
+		parent::__construct('workparty', 'WorkPartyID', $db);
 	}
 }

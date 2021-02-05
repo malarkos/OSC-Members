@@ -13,31 +13,27 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Router\Route;
 
 ?>
-<h3>Member Finances</h3>
+<h3>Member Work Parties</h3>
 
 <?php if (!empty($this->data)) : ?>
 
-Current Balance = <?php if (!empty($this->currentbalance)) : ?>  
-<?php echo "$".$this->currentbalance;?>
-<?php endif; ?>
+
 
 <table class="table table-striped table-hover">
 	<thead>
 		<th>Date</th>
-		<th>C/D</th>
-		<th>Amount</th>
-		<th>Total</th>
-		<th>Description</th>
+		<th>Days</th>
+		<th>Comment</th>
+		
 	</thead>
 	<tbody>
 	<?php  $total=0;?>
 				<?php foreach ($this->data as $i => $row) : ?>
             		<tr>
-						<td><?php echo $row->TransactionDate; ?> </td>
-						<td><?php echo $row->CreditDebit; ?> </td>
-						<td style="align:right"><?php echo "$ ".$row->Amount; ?> </td>
-						<td><?php $total += $row->Amount; $formatted = sprintf("$ %01.2f", $total); echo $formatted; ?> </td>
-						<td><?php echo $row->Description; ?> </td>
+						<td><?php echo $row->WorkPartyDate; ?> </td>
+						<td><?php echo $row->WorkPartyDats; ?> </td>
+						<td><?php echo $row->Comments; ?> </td>
+						
 					</tr>
           
 				<?php endforeach; ?>
@@ -45,6 +41,6 @@ Current Balance = <?php if (!empty($this->currentbalance)) : ?>
 </table>
 
 <?php else: ?>
-No finance details.
+No work party details.
 <?php endif; ?>
 

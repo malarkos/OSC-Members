@@ -16,7 +16,7 @@ require_once JPATH_COMPONENT . '/controller.php';
  *
  * @since  1.6
  */
-class MembersControllerFinances extends MembersController 
+class MembersControllerWorkparties extends MembersController 
 {
 	/**
 	 * Method to check out a user for editing and redirect to the edit form.
@@ -33,10 +33,10 @@ class MembersControllerFinances extends MembersController
 		$loginUserId = (int) $user->get('id');
 		
 		// Get the model.
-		$model = $this->getModel('Finances', 'MembersModel');
+		$model = $this->getModel('WorkParties', 'MembersModel');
 		
 		// Redirect to the edit screen.
-		$this->setRedirect(JRoute::_('index.php?option=com_members&view=finances&layout=edit', false));
+		$this->setRedirect(JRoute::_('index.php?option=com_members&view=workparties&layout=edit', false));
 		
 		return true;
 	 } // edit
@@ -57,7 +57,7 @@ class MembersControllerFinances extends MembersController
 	 	JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 	 
 	 	$app    = JFactory::getApplication();
-	 	$model = $this->getModel('Finances', 'MembersModel');
+	 	$model = $this->getModel('WorkParties', 'MembersModel');
 	 	
 	 	// Get the user data.
 	 	$data = $app->input->post->get('jform', array(), 'array');
@@ -113,17 +113,17 @@ class MembersControllerFinances extends MembersController
 	 	if ($return === false)
 	 	{
 	 		// Save the data in the session.
-	 		$app->setUserState('com_members.edit.finances.data', $data);
+	 		$app->setUserState('com_members.edit.workparties.data', $data);
 	 	
 	 		// Redirect back to the edit screen.
 	 		$this->setMessage(JText::sprintf('COM_MEMBERS_MEMBERS_SAVE_FAILED', $model->getError()), 'warning');
-	 		$this->setRedirect(JRoute::_('index.php?option=com_members&view=finances&layout=edit', false));
+	 		$this->setRedirect(JRoute::_('index.php?option=com_members&view=workparties&layout=edit', false));
 	 	
 	 		return false;
 	 	}
 	 	
 	 	// Flush the data from the session.
-	 	$app->setUserState('com_members.edit.finances.data', null);
+	 	$app->setUserState('com_members.edit.workparties.data', null);
 	 	
 	 	// Set return path
 	 	$this->setRedirect(JRoute::_('index.php?option=com_members&view=finances', false));

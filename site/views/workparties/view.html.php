@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
 */
-class MembersViewFinances extends JViewLegacy
+class MembersViewWorkParties extends JViewLegacy
 {
 	
 	protected $data;
@@ -39,7 +39,7 @@ class MembersViewFinances extends JViewLegacy
 		// Assign data to the view
 		
 		$this->data	            = $this->get('Data');
-		$this->currentbalance = $this->get('CurrentBalance');
+		
 		//$this->form	            = $this->get('Form');
 		$this->state            = $this->get('State');
 		//$this->assignRef( 'data', $data);  // assign to variable
