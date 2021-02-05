@@ -86,7 +86,7 @@ class MembersModelMemberFamily extends JModelAdmin
 		return $data;
 	}
 	
-	protected function prepareTable(&$table)
+	protected function prepareTable($table)
 	{
 		// get name of user who did the modification
 		$user = JFactory::getUser();
