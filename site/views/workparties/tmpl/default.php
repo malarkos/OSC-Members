@@ -26,8 +26,8 @@ else if ($wpdays < 80) $wpdisc = 40;
 else if ($wpdays < 100) $wpdisc = 50;
 else if ($wpdays < 120) $wpdisc = 60;
 else if ($wpdays < 140) $wpdisc = 70;
-else $wpdisc = 80;?><p>
-You are entitled to a <?php echo $wpdisc."%";?>discount on your Winter lodge bookings.
+else $wpdisc = 80;?><p><p>
+You are entitled to a <?php echo $wpdisc."%";?> discount on your Winter lodge bookings.
 
 <?php endif; ?>
 
