@@ -86,6 +86,61 @@ class MembersModelMembers extends JModelForm
 		return $this->data;
 	} // getData
 	
+	public function getLockers()
+	{
+	    // Function to return a members locker information
+	    // TODO - update
+	    $db    = JFactory::getDBO();
+	    $query = $db->getQuery(true);
+	    
+	    $user = JFactory::getUser();
+	    
+	    // Get joomlaid
+	    $userjoomlaid = $user->id;
+	    
+	    // get memberid
+	    $query->select('MemberID');
+	    $query->from('members');
+	    $query->where('joomlauserid = '.$db->quote($userjoomlaid));
+	    
+	    $db->setQuery($query);
+	    
+	    $db->execute ();
+	    $memberid = $db->loadResult (); // now have member id
+	    
+	    $query = $db->getQuery(true);
+	    
+	    $query->select('*');
+	    $query->from('lockers');
+	    $query->where('MemberID = '.$db->quote($memberid));
+	    
+	    
+	    $db->setQuery ( $query );
+	    $db->execute ();
+	    $num_rows = $db->getNumRows();
+	    
+	    try  // ensure in a try block for any errors.
+	    {
+	        //$row = $db->loadAssoc();
+	        $row = $db->loadObjectList();
+	        
+	        //$app->enqueueMessage('Num rows = '. $num_rows . ':');
+	    }
+	    catch (RuntimeException $e)
+	    {
+	        $this->setError(JText::sprintf('COM_MEMBERS_DATABASE_ERROR', $e->getMessage()), 500);
+	        
+	        return false;
+	    }
+	    
+	    
+	    $this->data = $row; // assign data to return object
+	    
+	    
+	    return $this->data;
+	    
+	}
+	
 	public function getForm($data = array(), $loadData = true)
 	{
 		// Get the form.

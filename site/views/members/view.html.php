@@ -38,7 +38,8 @@ class MembersViewMembers extends JViewLegacy
 	{
 		// Assign data to the view
 		
-		$this->data	            = $this->get('Data');
+		$this->data	            = $this->get('Data'); // get membership data
+		$this->lockers          = $this->get('Lockers');
 		$this->form	            = $this->get('Form');
 		$this->state            = $this->get('State');
 		//$this->assignRef( 'data', $data);  // assign to variable

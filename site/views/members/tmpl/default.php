@@ -56,4 +56,27 @@ use Joomla\CMS\Router\Route;
 		</tr>
 	</tbody>
 </table>
+
+<?php if (!empty($this->lockers)) : ?>
+
+<h4>Lockers assigned</h4>
+table class="table table-striped table-hover">
+	<thead>
+		<th>Lockers assigned</th>
+		
+		
+	</thead>
+	<tbody>
+	<?php  $total=0;?>
+				<?php foreach ($this->lockers as $i => $row) : ?>
+            		<tr>
+						<td><?php echo "Locker ".$row->Id; ?> </td>
+						
+						
+					</tr>
+          
+				<?php endforeach; ?>
+	</tbody>
+</table>
+<?php endif; ?>
  		
