@@ -18,7 +18,17 @@ use Joomla\CMS\Router\Route;
 <?php if (!empty($this->data)) : ?>
 
  <?php if (!empty($this->totalworkparties)) : ?>  Total Work Parties =
-<?php echo $this->totalworkparties;?>
+<?php echo $this->totalworkparties; $wpdays = $this->totalworkparties;
+if ($wpdays < 20) $wpdisc = 0;
+else if ($wpdays < 40) $wpdisc = 20;
+else if ($wpdays < 60) $wpdisc = 30;
+else if ($wpdays < 80) $wpdisc = 40;
+else if ($wpdays < 100) $wpdisc = 50;
+else if ($wpdays < 120) $wpdisc = 60;
+else if ($wpdays < 140) $wpdisc = 70;
+else $wpdisc = 80;?><p>
+You are entitled to a <?php echo $wpdisc."%";?>discount on your Winter lodge bookings.
+
 <?php endif; ?>
 
 <table class="table table-striped table-hover">
