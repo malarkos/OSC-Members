@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
 */
-class MembersViewMembers extends JViewLegacy
+class MembersViewSubsNotice extends JViewLegacy
 {
 	
 	protected $data;
@@ -39,9 +39,8 @@ class MembersViewMembers extends JViewLegacy
 		// Assign data to the view
 		
 		$this->data	            = $this->get('Data'); // get membership data
-		$this->lockers          = $this->get('Lockers');
-		$this->form	            = $this->get('Form');
-		$this->state            = $this->get('State');
+		$this->lockers          = ""; //$this->get('Lockers');
+		
 		//$this->assignRef( 'data', $data);  // assign to variable
 		//$this->userName = $data->username;
 		//$this->useremail = $data->useremail;

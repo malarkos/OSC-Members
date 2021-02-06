@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @since  0.0.1
 */
-class MembersModelMembers extends JModelForm
+class MembersModelSubsNotice extends JModelForm
 {
 	/**
 	 * @var string message
@@ -33,7 +33,7 @@ class MembersModelMembers extends JModelForm
 	 *
 	 * @since   1.6
 	 */
-	public function getTable($type = 'Members', $prefix = 'MembersTable', $config = array())
+	public function getTable($type = 'SubsNotice', $prefix = 'MembersTable', $config = array())
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -141,61 +141,6 @@ class MembersModelMembers extends JModelForm
 	    
 	}
 	
-	public function getForm($data = array(), $loadData = true)
-	{
-		// Get the form.
-		$form = $this->loadForm('com_members.members', 'members', array('control' => 'jform', 'load_data' => $loadData));
-	
-		if (empty($form))
-		{
-			return false;
-		}
-		
-		// return form variable
-		return $form;
-	} // getForm
-	
-	/**
-	 * Method to get the data that should be injected in the form.
-	 *
-	 * @return  mixed  The data for the form.
-	 *
-	 * @since   1.6
-	 */
-	protected function loadFormData()
-	{
-		$data = $this->getData();
-	
-		$this->preprocessData('com_members.members', $data);
-	
-		return $data;
-	} // loadFormData
-	
-	 /*
-	 * Method to save the form data.
-	 *
-	 * @param   array  $data  The form data.
-	 *
-	 * @return  mixed  The user id on success, false on failure.
-	 *
-	 * @since   1.6
-	 */
-	public function save($data)
-	{
-	    
-	    //JFactory::getApplication()->enqueueMessage('In model save:');
-	    
-		// get the table
-		$table = $this->getTable('Members');
-		
-		// save the data
-		if (!$table->save( $data )) {
-			return false;
-		}
-		
-		
-		return true;
-		
-	} // save 
+	 save 
 	
 }
