@@ -66,22 +66,5 @@ class MembersViewSubsNotice extends JViewLegacy
 		parent::display($tpl);
 	}
 	
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
-	protected function addToolBar()
-	{
-		$input = JFactory::getApplication()->input;
- 
-		// Add whatever buttons you require
-		JToolBarHelper::save('members.save');
-		JToolBarHelper::divider();
-		JToolBarHelper::cancel('members.cancel');
-		
-		
-	}
+	
 }

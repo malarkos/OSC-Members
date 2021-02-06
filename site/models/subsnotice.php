@@ -10,6 +10,10 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
+// load in the back end admin model
+
+JLoader::register('MembersModelMemberSubsNotice', JPATH_ADMINISTRATOR . '/components/com_members/models/membersubsnotice.php');
+
 /**
  * HelloWorld Model
  *
@@ -48,6 +52,12 @@ class MembersModelSubsNotice extends JModelForm
 	{
 		
 		// returns information from oscmembers database to the view.
+		
+	    $app = JFactory::getApplication();
+		
+	    $subsyear = MembersModelMemberSubsNotice::returnSubsYear();
+	    
+	    $app->enqueueMessage('Subsyear = '. $subsyear . ':');
 
 	      // update to use Joomla id
 		// Get logged in user info
@@ -141,6 +151,36 @@ class MembersModelSubsNotice extends JModelForm
 	    
 	}
 	
-	 save 
+	public function getForm($data = array(), $loadData = true)
+	{
+	    // Get the form.
+	    $form = $this->loadForm('com_members.subsnotice', 'subsnotice', array('control' => 'jform', 'load_data' => $loadData));
+	    
+	    if (empty($form))
+	    {
+	        return false;
+	    }
+	    
+	    // return form variable
+	    return $form;
+	} // getForm
+	
+	/**
+	 * Method to get the data that should be injected in the form.
+	 *
+	 * @return  mixed  The data for the form.
+	 *
+	 * @since   1.6
+	 */
+	protected function loadFormData()
+	{
+	    $data = $this->getData();
+	    
+	    $this->preprocessData('com_members.subsnotice', $data);
+	    
+	    return $data;
+	} // loadFormData
+	
+	  
 	
 }
