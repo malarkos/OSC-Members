@@ -152,9 +152,14 @@ class MembersModelSubsNotice extends JModelForm
 	    
 	}
 	
+	public function getBalance ()
+	{
+	    return "125.00";
+	}
+	
 	public function getMemberSub ()
 	{
-	    $data;
+	    $data = (object)array();
 	    
 	    $data->membersubdescription = "Graduate Subscription";
 	    $data->membersubamount = "380.00";

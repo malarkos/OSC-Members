@@ -39,8 +39,9 @@ class MembersViewSubsNotice extends JViewLegacy
 		// Assign data to the view
 		
 		//$this->data	            = $this->get('Data'); // get membership data
-		$this->lockers          = ""; //$this->get('Lockers');
-		$this->membersub        = $this->get('MemberSub');
+		$this->lockers        = ""; //$this->get('Lockers');
+		$this->balance        = $this->get('Balance');
+		$this->membersub      = $this->get('MemberSub');
 		
 		//$this->assignRef( 'data', $data);  // assign to variable
 		//$this->userName = $data->username;

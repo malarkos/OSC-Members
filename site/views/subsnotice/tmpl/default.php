@@ -26,7 +26,7 @@ The Subs notice is as follows
 	<tbody>
 	<tr>
 	<td>Balance as at 01 Dec 2020</td>
-	<td>$000</td>
+	<td><?php echo $this->balance;?></td>
 	</tr>
 		<tr>
 			<td><?php echo $this->membersub->membersubdescription;?></td>
