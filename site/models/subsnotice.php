@@ -147,7 +147,8 @@ class MembersModelSubsNotice extends JModelForm
 	    
 	    $this->data = $row; // assign data to return object
 	    
-	    
+	    $this->data->lockerdescription = "Locker 5";
+	    $this->data->lockeramount = "78";
 	    return $this->data;
 	    
 	}
@@ -166,6 +167,17 @@ class MembersModelSubsNotice extends JModelForm
 	    
 	    return $data;
 	}
+	
+	public function getFamilySubs ()
+	{
+	    $data = (object)array();
+	    
+	    $data->membersubdescription = "Spouse Subscription";
+	    $data->membersubamount = "190.00";
+	    
+	    return $data;
+	}
+	
 	public function getForm($data = array(), $loadData = true)
 	{
 	    // Get the form.
