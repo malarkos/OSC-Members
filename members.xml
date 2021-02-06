@@ -10,7 +10,7 @@
 	<copyright>Copyright Info</copyright>
 	<license>License Info</license>
 	<!--  The version string is recorded in the components table -->
-	<version>1.13.03</version>
+	<version>1.13.04</version>
 	<!-- The description is optional and defaults to the name -->
 	<description>COM_MEMBERS_DESCRIPTION</description>
  
@@ -46,6 +46,8 @@
 		<folder>tables</folder>
 		<!-- controller files section -->
 		<folder>controllers</folder>
+		<!-- helpers files section -->
+		<folder>helpers</folder>
 	
 	</files>
      <languages folder="site/language">

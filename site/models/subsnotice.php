@@ -13,6 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 // load in the back end admin model
 
 JLoader::register('MembersModelMemberSubsNotice', JPATH_ADMINISTRATOR . '/components/com_members/models/membersubsnotice.php');
+JLoader::register('MembersHelper', JPATH_SITE . '/components/com_members/helpders/membershelper.php');
 
 /**
  * HelloWorld Model
