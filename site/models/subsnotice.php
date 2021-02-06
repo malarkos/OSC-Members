@@ -152,6 +152,15 @@ class MembersModelSubsNotice extends JModelForm
 	    
 	}
 	
+	public function getMemberSub ()
+	{
+	    $data;
+	    
+	    $data->membersubdescription = "Graduate Subscription";
+	    $data->membersubamount = "380.00";
+	    
+	    return $data;
+	}
 	public function getForm($data = array(), $loadData = true)
 	{
 	    // Get the form.

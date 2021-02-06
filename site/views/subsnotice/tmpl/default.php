@@ -17,12 +17,22 @@ use Joomla\CMS\Router\Route;
 The Subs notice is as follows
 
 <table class="table table-striped table-hover">
+	
+	<thead>
+	<th>Item	</th>
+	<th> Amount </th>
+	
+	</thead>
 	<tbody>
+	<tr>
+	<td>Balance as at 01 Dec 2020</td>
+	<td>$000</td>
+	</tr>
 		<tr>
-			<td>Member:</td>
-			<td><?php echo $this->data->MemberFirstname; ?> <?php echo $this->data->MemberSurname; ?></td>
-			<td >Date of Birth:</td>
-			<td ><?php echo $this->data->memberdob; ?> </td>
+			<td><?php echo $this->membersub->membersubdescription;?></td>
+			<td><?php echo $this->membersub->membersubamount;?></td>
+	
+			
 		</tr>
 		
 		
@@ -48,3 +58,4 @@ The Subs notice is as follows
 </table>
 <?php endif; ?>
  		
+ 	
