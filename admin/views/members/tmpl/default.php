@@ -74,6 +74,10 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 			</th>
 			</th>
 				<th width="5%">
+				<?php echo JText::_('COM_MEMBERS_SUMMER') ;?>
+			</th>
+			</th>
+				<th width="5%">
 				<?php echo JText::_('COM_MEMBERS_SUBS') ;?>
 			</th>
 			</th>
@@ -182,6 +186,9 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 						</td>
 						<td>
 								<?php echo $row->CurrentSubsPaid; ?>
+						</td>
+						<td>
+								<?php echo $row->SummerUsageOnly; ?>
 						</td>
 						<td>
 								<a href="<?php echo $subslink; ?>" target="_blank">

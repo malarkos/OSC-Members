@@ -90,6 +90,10 @@ class MembersModelMembers extends JModelList
 		if (!empty($memberloa)) {
 			$query->where('m.MemberLeaveofAbsence = \''.$db->escape($memberloa).'\'');
 		}
+		$membersummer = $this->getState('filter.membersummer');
+		if (!empty($membersummer)) {
+		    $query->where('m.SummerUsageOnly = \''.$db->escape($membersummer).'\'');
+		}
 		
  		/*$orderCol	= $this->state->get('list.ordering', 'm.MemberID');
 		$orderDirn 	= $this->state->get('list.direction', 'asc');

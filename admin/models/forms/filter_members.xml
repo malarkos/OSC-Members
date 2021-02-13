@@ -35,5 +35,24 @@
 			 >
 				 <option value="">COM_MEMBER_MEMBERLOA_LABEL</option>
 		</field>
+		<field 
+			name="memberloa" 
+			type="memberloa"
+			label="COM_MEMBER_MEMBERLOA_LABEL" 
+			description="COM_MEMBER_MEMBERLOA_DESC"
+			 onchange="this.form.submit();"
+			 >
+				 <option value="">COM_MEMBER_MEMBERLOA_LABEL</option>
+		</field>
+		<field 
+			name="membersummer" 
+			type="membersummer"
+			label="COM_MEMBERS_MEMBER_SUMMER_LABEL" 
+			description="COM_MEMBERS_MEMBER_SUMMER_LABEL"
+			 onchange="this.form.submit();"
+			 >
+				 <option value="">COM_MEMBERS_MEMBER_SUMMER_LABEL</option>
+		</field>
 	</fields>
 </form>
+
