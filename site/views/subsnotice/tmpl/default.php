@@ -32,24 +32,38 @@ The Subs notice is as follows
 	</tr>
 		<tr>
 			<td><?php echo $this->membersub->membersubdescription;?></td>
-			<td><?php echo $this->membersub->membersubamount;?></td>
+			<td><?php echo money_format('%.2n',-1*$this->membersub->membersubamount);?></td>
 			<td><?php $total-= $this->membersub->membersubamount;echo money_format('%.2n', $total);?></td>
 	
 			
 		</tr>
 		<tr>
 			<td><?php echo $this->familysubs->membersubdescription;?></td>
-			<td><?php echo $this->familysubs->membersubamount;?></td>
+			<td><?php echo money_format('%.2n',-1*$this->familysubs->membersubamount);?></td>
 			<td><?php $total-= $this->familysubs->membersubamount;echo money_format('%.2n', $total);?></td>
 	
 			
 		</tr>
 		<tr>
 			<td><?php echo $this->lockers->lockerdescription;?></td>
-			<td><?php echo $this->lockers->lockeramount;?></td>
+			<td><?php echo money_format('%.2n',-1*$this->lockers->lockeramount);?></td>
 			<td><?php $total-= $this->lockers->lockeramount;echo money_format('%.2n', $total);?></td>
 	
 			
+		</tr>
+		<tr>
+		<td>
+		<?php 
+		if ($total < 0){
+		    echo "Amount owing:";
+		}
+		else {
+		    echo "Account in credit, no payment required";
+		}
+		?>
+		</td>
+		<td>&nbsp;</td>
+		<td><?php if ($total < 0) $total *= -1; echo "$".sprintf("%05.2f",$total);?></td>
 		</tr>
 		
 	</tbody>

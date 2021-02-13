@@ -147,9 +147,10 @@ class MembersModelSubsNotice extends JModelForm
 	    
 	    $this->data = $row; // assign data to return object
 	    
-	    $this->data->lockerdescription = "Locker 5";
-	    $this->data->lockeramount = "78";
-	    return $this->data;
+	    $lockerdata = (object)array();
+	    $lockerdata->lockerdescription = "Locker 5";
+	    $lockerdata->lockeramount = "78";
+	    return $lockerdata;
 	    
 	}
 	
