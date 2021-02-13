@@ -184,6 +184,21 @@ class MembersModelMemberSubsNotice extends JModelList {
 					$db->setQuery ( $query );
 					$db->execute ();
 					$membersub = $db->loadResult ();
+					
+					// check for Summer usage
+					$query = $db->getQuery ( true );
+					$query->select ( 'SummerUsageOnly' );
+					$query->from ( 'members' );
+					$query->where ( 'MemberID = ' . $memid );
+					//$app->enqueueMessage('Summer Usage query= '.$query.';');
+					$db->setQuery ( $query );
+					$db->execute ();
+					$summerusage = $db->loadResult ();
+					
+					if ($summerusage == "Yes")
+					{
+					    $membersub *= 0.2;
+					}
 					// $app->enqueueMessage('In Student, membersub = ' . $membersub. ":");
 				} else {
 					$membersub = 0.00;
