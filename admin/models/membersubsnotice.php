@@ -166,6 +166,20 @@ class MembersModelMemberSubsNotice extends JModelList {
 					$membersub = $db->loadResult ();
 					//$app->enqueueMessage('MemberSub = '.$membersub.';');
 					
+					// need to get over 70 discount
+					// get dob
+					$query = $db->getQuery ( true );
+					$query->select ( 'MemberBirthDate' );
+					$query->from ( 'members' );
+					$query->where ( 'MemberID = ' . $memid );
+					$db->setQuery ( $query );
+					$db->execute ();
+					$memdob = $db->loadResult ();
+					// if over 70 apply discount
+    					if ($memdob > '0000-00-00' and $memdob < '1951-12-01'){
+    					    $membersub *= 0.5; // 50% discount for  over 70
+    					}
+					
 					} else if ($summerusage == "Yes") {
 						$query = $db->getQuery ( true );
 						$query->select ( 'Summer' );
