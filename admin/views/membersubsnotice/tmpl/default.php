@@ -138,7 +138,13 @@ $totalowing = 0.00;
 							<?php endforeach; ?>
 						<?php endif; ?>			
 						<tr>
-							<td>Balance due by <b><?php echo $this->subsduedate;?></b><?php if ($totalowing >= 0) echo " - No payment required.";?></td>
+							<td>
+							<?php if ($totalowing >= 0) echo " Account in credit - No payment required.";
+							else {?>
+									Amount due by <b><?php echo $this->subsduedate;?></b>
+							<?php }?>
+							
+							</td>
 							<td>&nbsp;</td>
 							<td align="right"><b>$<?php if ($totalowing < 0) $totalowing *= -1;  $totalowing = sprintf("%04.2f",$totalowing); echo $totalowing;?></b>
 							</td>
