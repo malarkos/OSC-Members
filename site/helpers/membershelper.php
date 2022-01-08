@@ -31,6 +31,29 @@ class MembersHelper
      *  Function to return current subs year.
      */
     
+    public function getMemberID(){
+       
+        $memberid = "-1"; // set invalid default value
+        $db    = JFactory::getDBO();
+        $query = $db->getQuery(true);
+        
+        $user = JFactory::getUser();
+        
+        // Get joomlaid
+        $userjoomlaid = $user->id;
+        
+        // get memberid
+        $query->select('MemberID');
+        $query->from('members');
+        $query->where('joomlauserid = '.$db->quote($userjoomlaid));
+        
+        $db->setQuery($query);
+        
+        $db->execute ();
+        $memberid = $db->loadResult (); // now have member id
+        
+        return $memberid;
+    }
     public function returnSubsYear()
     {
         $db = JFactory::getDbo ();
