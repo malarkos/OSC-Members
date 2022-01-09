@@ -325,6 +325,22 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	    
 	    // Set subs paid for lockers
 	    
+	    $query = $db->getQuery ( true );
+	    $query->select ( '*' );
+	    $query->from ( 'lockers' );
+	    $query->where ( 'MemberID = ' . $memid );
+	    
+	    $db->setQuery ( $query );
+	    $db->execute ();
+	    $num_rows = $db->getNumRows ();
+	    $lockerinfo = $db->loadObjectList ();
+	    
+	    for($i = 0; $i < $num_rows; $i ++) {
+	        $lockerid = $lockerinfo[$i]->id;
+	        JFactory::getApplication()->enqueueMessage('lockerid = '.$lockerid);
+	        $memtype="l";
+	        SubsHelper::setCurrentSubsPaid($lockerid,"Yes",$memtype);
+	    }
 	    // Go back to subspayment
 	    $this->setRedirect(JRoute::_('index.php?option=com_members&view=membersubspayment&memid='.$memid, false));
 	    return;
