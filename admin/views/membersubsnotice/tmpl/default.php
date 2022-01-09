@@ -90,8 +90,12 @@ $totalowing = 0.00;
 							      echo  " - Summer Usage only";
 							}
 							
-							if($member->MemberBirthDate > '0000-00-00' and $member->MemberBirthDate < '1951-12-01') {
-							    echo " 50% discount for over 70";
+							if ($member->MemberType == 'Graduate') {
+							    
+							
+    							if($member->MemberBirthDate > '0000-00-00' and $member->MemberBirthDate < '1951-12-01') {
+    							    echo " 50% discount for over 70";
+    							}
 							}
 							
 							?>

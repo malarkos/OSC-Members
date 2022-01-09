@@ -309,11 +309,11 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	    $query->select ( '*' );
 	    $query->from ( 'familymembers' );
 	    $query->where ( 'MemberID = ' . $memid . ' AND FamilyMembershipType in (\'Spouse\',\'Child\',\'Buddy\') ' );
-	    JFactory::getApplication()->enqueueMessage('query = '.$query);
+	    //JFactory::getApplication()->enqueueMessage('query = '.$query);
 	    $db->setQuery ( $query );
 	    $db->execute ();
 	    $num_rows = $db->getNumRows ();
-	    JFactory::getApplication()->enqueueMessage('Num rows = '.$num_rows);
+	    //JFactory::getApplication()->enqueueMessage('Num rows = '.$num_rows);
 	    $familysubs = $db->loadObjectList ();
 	    // cycle through and add subs
 	    for($i = 0; $i < $num_rows; $i ++) {
@@ -337,7 +337,7 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	    
 	    for($i = 0; $i < $num_rows; $i ++) {
 	        $lockerid = $lockerinfo[$i]->id;
-	        JFactory::getApplication()->enqueueMessage('lockerid = '.$lockerid);
+	        //JFactory::getApplication()->enqueueMessage('lockerid = '.$lockerid);
 	        $memtype="l";
 	        SubsHelper::setCurrentSubsPaid($lockerid,"Yes",$memtype);
 	    }
