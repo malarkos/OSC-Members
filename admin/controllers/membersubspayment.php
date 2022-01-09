@@ -279,6 +279,11 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	    require_once JPATH_ADMINISTRATOR. '/components/com_subs/helpers/subs.php';
 	    $subsyear = SubsHelper::returnSubsYear();
 	    
+	    
+	    // Access database
+	    $db    = JFactory::getDbo();
+	    $query = $db->getQuery(true);
+	    
 	       
 	    // JFactory::getApplication()->enqueueMessage('Totalowing= '.$totalowing.':');
 	    // JFactory::getApplication()->enqueueMessage('Total remain= '.$totalremain.':');
@@ -296,9 +301,29 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	    
 	    
 	    // Set subs paid for member
-	   // Set subs paid for family members
-	   // Set subs paid for lockers
+	   
 	    SubsHelper::setCurrentSubsPaid($memid,"Yes",$memtype);
+	    
+	    
+	    // Set subs paid for family members
+	    $query->select ( '*' );
+	    $query->from ( 'familymembers' );
+	    $query->where ( 'MemberID = ' . $memid . ' AND FamilyMembershipType in (\'Spouse\',\'Child\',\'Buddy\') ' );
+	    JFactory::getApplication()->enqueueMessage('query = '.$query);
+	    $db->setQuery ( $query );
+	    $db->execute ();
+	    $num_rows = $db->getNumRows ();
+	    JFactory::getApplication()->enqueueMessage('Num rows = '.$num_rows);
+	    $familysubs = $db->loadObjectList ();
+	    // cycle through and add subs
+	    for($i = 0; $i < $num_rows; $i ++) {
+	        // get membership type
+	        $fammemid = $familysubs[$i]->FamilyMemberID;
+	        $memtype = "f";
+	        SubsHelper::setCurrentSubsPaid($fammemid,"Yes",$memtype);
+	    }
+	    
+	    // Set subs paid for lockers
 	    
 	    // Go back to subspayment
 	    $this->setRedirect(JRoute::_('index.php?option=com_members&view=membersubspayment&memid='.$memid, false));

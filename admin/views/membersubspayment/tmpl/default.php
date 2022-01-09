@@ -121,7 +121,7 @@ $link = JRoute::_($financeeditURL);
 No subs payments received.
 <?php endif; ?>	
 
-<h3>Last 10 finance entries</h3>
+<h3>Current finance balance</h3>
 	
 <input type="hidden" name="task" value="" /> 
 	<input type="hidden" name="totalowing" value="<?php echo $totalowing;?>" /> 
