@@ -272,6 +272,40 @@ class MembersControllerMemberSubsPayment extends JControllerAdmin
 	}
 	
 	/*
+	 * Function to function to mark all subs paid 
+	 */
+	public function markallpaid()
+	{
+	    require_once JPATH_ADMINISTRATOR. '/components/com_subs/helpers/subs.php';
+	    $subsyear = SubsHelper::returnSubsYear();
+	    
+	       
+	    // JFactory::getApplication()->enqueueMessage('Totalowing= '.$totalowing.':');
+	    // JFactory::getApplication()->enqueueMessage('Total remain= '.$totalremain.':');
+	    // build return URL
+	    $jinput = JFactory::getApplication ()->input;
+	    $memid = $jinput->get ( 'memid', 0 );
+	    $memtype = "m";
+	    
+	    JFactory::getApplication()->enqueueMessage('In markallpaid');
+	    
+	    if ($memid == 0) { // error not set
+	        JFactory::getApplication()->enqueueMessage('Error: invalid member id');
+	        return false;
+	    }
+	    
+	    
+	    // Set subs paid for member
+	   // Set subs paid for family members
+	   // Set subs paid for lockers
+	    SubsHelper::setCurrentSubsPaid($memid,"Yes",$memtype);
+	    
+	    // Go back to subspayment
+	    $this->setRedirect(JRoute::_('index.php?option=com_members&view=membersubspayment&memid='.$memid, false));
+	    return;
+	    
+	}//function
+	/*
 	 * Function to email payment receipt to member
 	 */
 	public function emailmember()

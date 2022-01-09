@@ -119,7 +119,10 @@ $link = JRoute::_($financeeditURL);
 </table>
 <?php else: ?>
 No subs payments received.
-<?php endif; ?>		
+<?php endif; ?>	
+
+<h3>Last 10 finance entries</h3>
+	
 <input type="hidden" name="task" value="" /> 
 	<input type="hidden" name="totalowing" value="<?php echo $totalowing;?>" /> 
 	<input type="hidden" name="totalremain" value="<?php echo $totalremain;?>" /> 
